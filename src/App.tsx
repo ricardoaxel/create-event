@@ -1,8 +1,16 @@
+import { Header } from "@components/atoms";
+
 import "./App.css";
 
 function App() {
   return (
-    <h1 className="text-3xl font-bold underline text-red-700">Create Event</h1>
+    <>
+      <Header altText="CREWFARE" />
+      <div style={{ background: "red", padding: 0, margin: "" }}>CREWFARE</div>
+      <div>
+        <p>Body</p>
+      </div>
+    </>
   );
 }
 

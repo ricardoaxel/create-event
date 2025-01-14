@@ -8,14 +8,28 @@
   font-weight: 400;
 }
 
+html,
 body {
+  height: 100%;
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-height: 100vh;
+  overflow: hidden;
+}
+
+body {
+  flex-direction: column;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+}
+
+@layer base {
+  :root {
+    --bg-primary: #141416;
+    --bg-header: #000000;
+    --text-primary: #ffffff;
+  }
 }
