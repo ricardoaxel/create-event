@@ -13,12 +13,15 @@ body {
   height: 100%;
   margin: 0;
   overflow: hidden;
+  -webkit-font-smoothing: antialiased; /* Smooths fonts for better appearance */
+  -moz-osx-font-smoothing: grayscale; /* On Firefox (macOS) */
 }
 
 body {
   flex-direction: column;
   background-color: var(--bg-primary);
   color: var(--text-primary);
+  font-family: "Poppins", sans-serif;
 }
 
 h1 {
@@ -29,7 +32,12 @@ h1 {
 @layer base {
   :root {
     --bg-primary: #141416;
+    --bg-tertiary: #141416;
     --bg-header: #000000;
+    --accent: #4323ff;
+    --disabled: #2f2f31;
+    --success: #4ff6b1;
     --text-primary: #ffffff;
+    --text-secondary: #a3a3a3;
   }
 }

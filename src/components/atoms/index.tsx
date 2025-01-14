@@ -1,3 +1,3 @@
-import { Header } from "./Header/Header";
+import { CircleText } from "./CircleText/CircleText";
 
-export { Header };
+export { CircleText };

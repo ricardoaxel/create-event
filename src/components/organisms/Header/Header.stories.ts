@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Header } from "./Header";
 
 const meta = {
-  title: "Atoms/Header",
+  title: "Organisms/Header",
   component: Header,
   parameters: {
     layout: "fullscreen",
@@ -28,7 +28,7 @@ export const Default: Story = {
 
 export const WithImage: Story = {
   args: {
-    imageUrl: "https://picsum.photos/165/40", // Use a placeholder image URL
+    imageUrl: "https://picsum.photos/165/40",
     altText: "Placeholder Image",
   },
 };
