@@ -13,11 +13,11 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   return (
     <header className="bg-header py-5 center justify-center flex">
-      {imageUrl ? (
+      {/* {imageUrl ? (
         <img src={imageUrl} alt={altText} className="w-[165px] h-[40px]" />
       ) : (
         <span>{altText}</span>
-      )}
+      )} */}
     </header>
   );
 };
