@@ -15,19 +15,16 @@ export const StepNavigator: React.FC<StepNavigatorProps> = ({
   return (
     <nav className=" w-[15.5rem] h-full flex flex-col p-5 bg-tertiary ml-[12.5%]">
       <h1 className="font-bold text-[24px] mb-5">Create Event</h1>
-      {steps.map((step, index) => (
-        <button
-          key={index}
-          className={`py-2 px-4 mb-2 rounded-md ${
-            currentStep === index
-              ? "bg-blue-500 text-white"
-              : "bg-white text-black"
-          }`}
-          onClick={() => onStepChange(index)}
-        >
-          <Step />
-        </button>
-      ))}
+
+      <Step title="Basic Irmation" stepNumber="1" isSelected type="success" />
+      <Step
+        title="Basition"
+        stepNumber="2"
+        isSelected
+        hasIssue
+        type="default"
+      />
+      <Step title="Basation" stepNumber="3" />
     </nav>
   );
 };

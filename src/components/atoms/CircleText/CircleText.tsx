@@ -1,42 +1,61 @@
 import React from "react";
 import clsx from "clsx";
 
-import { success } from "@assets";
+import { success, warning } from "@assets";
 
 export interface CircleTextProps {
   content?: string | React.ReactNode;
   bgColor?: string;
   textColor?: string;
-  type?: "success" | "default" | "disabled";
+  type?: "success" | "warning" | "default" | "inactive";
+  size?: string;
 }
+
+const imageMap: Record<string, string | undefined> = {
+  success: success,
+  warning: warning,
+};
 
 export const CircleText: React.FC<CircleTextProps> = ({
   content,
   bgColor = "bg-accent",
   textColor = "text-white",
   type = "default",
+  size = "1.5rem",
 }) => {
   const circleColor = clsx({
     "bg-success": type === "success",
-    "bg-disabled": type === "disabled",
-    [bgColor]: type !== "success" && type !== "disabled",
+    "bg-warning": type === "warning",
+    "bg-disabled": type === "inactive",
+    [bgColor]: type !== "success" && type !== "warning" && type !== "inactive",
   });
 
   const textColorClass = clsx({
-    "text-secondary": type === "disabled",
-    [textColor]: type !== "success" && type !== "disabled",
+    "text-secondary": type === "inactive",
+    [textColor]:
+      type !== "success" && type !== "warning" && type !== "inactive",
   });
+
+  const image = imageMap[type];
 
   return (
     <div
       className={clsx(
         circleColor,
         textColorClass,
-        "font-semibold flex items-center justify-center rounded-full w-[1.5rem] h-[1.5rem] text-[.75rem]"
+        "font-semibold flex items-center justify-center rounded-full text-xs"
       )}
+      style={{
+        width: size,
+        height: size,
+      }}
     >
-      {type === "success" ? (
-        <img src={success} alt="Success Logo" className="w-[1rem]" />
+      {image ? (
+        <img
+          src={image}
+          alt={`${type} Logo`}
+          className="w-full h-full object-contain p-[3.7px]"
+        />
       ) : (
         content
       )}

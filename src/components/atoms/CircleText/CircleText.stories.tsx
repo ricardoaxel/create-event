@@ -27,8 +27,13 @@ export default {
     type: {
       control: {
         type: "radio",
-        options: ["default", "success", "disabled"],
+        options: ["default", "success", "inactive", "warning"],
       },
+    },
+    size: {
+      control: "text",
+      description: "Size of the circle (e.g., '1.5rem', '14rem')",
+      defaultValue: "1.5rem",
     },
   },
 } as Meta;
@@ -53,13 +58,19 @@ Success.args = {
 export const Disabled = Template.bind({});
 Disabled.args = {
   content: "0",
-  type: "disabled",
+  type: "inactive",
 };
 
-export const CustomBackground = Template.bind({});
-CustomBackground.args = {
+export const Warning = Template.bind({});
+Warning.args = {
+  type: "warning",
+};
+
+export const Custom = Template.bind({});
+Custom.args = {
   content: "3",
   bgColor: "bg-blue-500",
   textColor: "text-red-300",
   type: "default",
+  size: "3rem",
 };
