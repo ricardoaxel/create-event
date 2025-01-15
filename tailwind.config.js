@@ -17,16 +17,18 @@ export default {
         disabled: "var(--disabled)",
         success: "var(--success)",
         warning: "var(--bg-warning)",
+        "warning-opacity": "var(--bg-warning-opacity)",
         selection: "var(--selection)",
       },
-
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
       },
       borderColor: {
         selected: "var(--selection)",
+        warning: "var(--bg-warning)",
         accent: "var(--accent)",
         "accent-opacity": "var(--border-accent-opacity)",
+        "input-focus-opacity": "var(--border-input-focus-opacity)",
       },
     },
   },

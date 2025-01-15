@@ -33,8 +33,10 @@ h1 {
     --bg-tertiary: #141416;
     --bg-header: #000000;
     --bg-warning: #e74c3c;
+    --bg-warning-opacity: rgba(231, 76, 60, 0.1);
     --bg-accent-opacity: rgba(67, 35, 255, 0.1);
     --border-accent-opacity: rgba(67, 35, 255, 0.4);
+    --border-input-focus-opacity: rgba(255, 255, 255, 0.2);
     --selection: #2f2f31;
     --accent: #4323ff;
     --disabled: #302e31;

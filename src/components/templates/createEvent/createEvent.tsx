@@ -1,11 +1,47 @@
 import { useState } from "react";
 
-import { ToggleButton } from "@components/molecules";
+import {
+  FormFieldContainer,
+  ToggleButton,
+  Selector,
+  InputText,
+} from "@components/molecules";
 import { StepNavigator } from "@components/organisms";
-import { Button } from "@components/atoms";
+import { SelectorOption } from "@components/molecules/Selector/Selector";
+
+const options = [
+  { id: 1, name: "Tom Cook" },
+  { id: 2, name: "Wade Cooper" },
+  { id: 3, name: "Tanya Fox" },
+  { id: 4, name: "Arlene Mccoy" },
+  { id: 5, name: "Devon Webb" },
+];
 
 function CreateEvent() {
-  const [isEventEnabled, setIsEventEnabled] = useState<boolean>(false); // Specify the type here
+  const [isEventEnabled, setIsEventEnabled] = useState<boolean>(true);
+  const [selectedOption, setSelectedOption] = useState<SelectorOption>(
+    options[0]
+  );
+
+  const handleChange = (newOption: SelectorOption) => {
+    setSelectedOption(newOption);
+    console.log("Selected option:", newOption);
+  };
+
+  const [inputValue, setInputValue] = useState("");
+  const [warningMessage, setWarningMessage] = useState(
+    "Error in input happening"
+  );
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+
+    if (e.target.value.length < 5) {
+      setWarningMessage("Input is too short.");
+    } else {
+      setWarningMessage("");
+    }
+  };
 
   return (
     <div className="flex-1 flex">
@@ -16,21 +52,30 @@ function CreateEvent() {
       />
       <div className="p-5 flex-1">
         <h2 className="font-semibold text-2xl">Basic Information</h2>
-        <div className="p-5 border-selected bg-primary rounded-[8px] border flex-1">
-          <p>Hola</p>
+        <div className="p-5 border-selected  rounded-[8px] border flex-1 flex  flex-col ">
           <ToggleButton
             leftText="Enable Event"
             rightText="Disable Event"
             handleToggle={setIsEventEnabled}
             leftSideActive={isEventEnabled}
+            className={"self-center"}
           />
-
-          <Button
-            label="Disable Event"
-            width="151px"
-            height="40px"
-            type="secondary"
-          />
+          <div className="mt-5 flex gap-5">
+            <FormFieldContainer label="Email" className="flex-1">
+              <Selector
+                options={options}
+                value={selectedOption}
+                onChange={handleChange}
+              />
+            </FormFieldContainer>
+            <FormFieldContainer label="Event Name" className="flex-1">
+              <InputText
+                warningMessage={warningMessage}
+                value={inputValue}
+                onChange={handleInputChange}
+              />
+            </FormFieldContainer>
+          </div>
         </div>
       </div>
     </div>
