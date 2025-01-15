@@ -1,7 +1,8 @@
 import React from "react";
 import clsx from "clsx";
 
-import { success, warning } from "@assets";
+import { warning } from "@assets";
+import { SuccessIcon } from "@components/icons";
 
 export interface CircleTextProps {
   content?: string | React.ReactNode;
@@ -11,9 +12,9 @@ export interface CircleTextProps {
   size?: string;
 }
 
-const imageMap: Record<string, string | undefined> = {
-  success: success,
-  warning: warning,
+const imageMap: Record<string, React.ReactNode> = {
+  success: <SuccessIcon />,
+  warning: <img src={warning} alt="Warning" />,
 };
 
 export const CircleText: React.FC<CircleTextProps> = ({
@@ -50,15 +51,7 @@ export const CircleText: React.FC<CircleTextProps> = ({
         height: size,
       }}
     >
-      {image ? (
-        <img
-          src={image}
-          alt={`${type} Logo`}
-          className="w-full h-full object-contain p-[3.7px]"
-        />
-      ) : (
-        content
-      )}
+      {image ? image : content}
     </div>
   );
 };

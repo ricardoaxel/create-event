@@ -17,13 +17,14 @@ export default {
         disabled: "var(--disabled)",
         success: "var(--success)",
         warning: "var(--bg-warning)",
+        selection: "var(--selection)",
       },
 
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
       },
       borderColor: {
-        selected: "var(--border-selected)",
+        selected: "var(--selection)",
         accent: "var(--accent)",
         "accent-opacity": "var(--border-accent-opacity)",
       },

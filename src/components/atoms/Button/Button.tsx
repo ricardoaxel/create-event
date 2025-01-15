@@ -27,7 +27,7 @@ export const Button: React.FC<ButtonProps> = ({
       type="button"
       onClick={onClick}
       style={{ width, height }}
-      className={`cursor-pointer text-sm font-bold p-5 rounded-[8px] flex justify-center items-center transition-all duration-500 ${borderClass} ${typeClasses}`}
+      className={`cursor-pointer text-sm font-bold rounded-[8px] flex justify-center items-center transition-all duration-500 ${borderClass} ${typeClasses}`}
     >
       {label}
     </button>

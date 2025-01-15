@@ -35,7 +35,7 @@ h1 {
     --bg-warning: #e74c3c;
     --bg-accent-opacity: rgba(67, 35, 255, 0.1);
     --border-accent-opacity: rgba(67, 35, 255, 0.4);
-    --border-selected: #2f2f31;
+    --selection: #2f2f31;
     --accent: #4323ff;
     --disabled: #302e31;
     --success: #4ff6b1;

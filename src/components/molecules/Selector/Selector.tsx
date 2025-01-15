@@ -1,0 +1,63 @@
+import { ArrowIcon, SuccessIcon } from "@components/icons";
+import {
+  Listbox,
+  ListboxButton,
+  ListboxOption,
+  ListboxOptions,
+} from "@headlessui/react";
+
+import clsx from "clsx";
+
+export interface SelectorOption {
+  id: number | string;
+  name: string;
+}
+
+export interface SelectorProps {
+  options: SelectorOption[];
+  value: SelectorOption;
+  onChange: (selected: SelectorOption) => void;
+}
+
+export const Selector: React.FC<SelectorProps> = ({
+  options,
+  value,
+  onChange,
+}) => {
+  return (
+    <Listbox value={value} onChange={onChange}>
+      <div className="w-full">
+        <ListboxButton
+          className={clsx(
+            "w-full bg-selection h-[48px] rounded-[8px] font-medium text-[14px] px-[12px] flex flex-row items-center justify-between gap-2"
+          )}
+        >
+          {value.name}
+          <ArrowIcon />
+        </ListboxButton>
+        <ListboxOptions
+          anchor="bottom"
+          transition
+          className={clsx(
+            "w-[var(--button-width)] rounded-[8px] bg-selection focus:outline-none",
+            "transition duration-100 ease-in data-[leave]:data-[closed]:opacity-0"
+          )}
+        >
+          {options.map((option) => (
+            <ListboxOption
+              key={option.id}
+              value={option}
+              className="group flex cursor-default items-center gap-2 rounded-lg py-1.5 px-3 select-none data-[focus]:bg-white/10"
+            >
+              <SuccessIcon
+                className="invisible group-data-[selected]:visible"
+                strokeColor="var(--success)"
+              />
+              <div className="text-sm/6 text-white">{option.name}</div>
+            </ListboxOption>
+          ))}
+        </ListboxOptions>
+      </div>
+    </Listbox>
+  );
+};

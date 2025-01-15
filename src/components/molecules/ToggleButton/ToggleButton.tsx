@@ -5,6 +5,7 @@ export interface ToggleButtonProps {
   rightText: string;
   leftSideActive?: boolean;
   handleToggle: (leftSideClicked: boolean) => void;
+  className?: string;
 }
 
 export const ToggleButton: React.FC<ToggleButtonProps> = ({
@@ -12,9 +13,12 @@ export const ToggleButton: React.FC<ToggleButtonProps> = ({
   rightText,
   leftSideActive = true,
   handleToggle,
+  className = "",
 }) => {
   return (
-    <div className="inline-flex border border-accent-opacity rounded-[8px] bg-accent-opacity">
+    <div
+      className={`inline-flex border border-accent-opacity rounded-[8px] bg-accent-opacity ${className}`}
+    >
       <Button
         label={leftText}
         width="151px"
