@@ -1,6 +1,6 @@
 import { Header } from "@components/organisms";
 
-import CreateEvent from "./pages/createEvent/createEvent";
+import CreateEvent from "./components/templates/createEvent/createEvent";
 import "./App.css";
 
 function App() {

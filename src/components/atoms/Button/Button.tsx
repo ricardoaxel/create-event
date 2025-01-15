@@ -1,42 +1,33 @@
-import React from "react";
-
 export interface ButtonProps {
-  /** Is this the principal call to action on the page? */
-  primary?: boolean;
-  /** What background color to use */
-  backgroundColor?: string;
-  /** How large should the button be? */
-  size?: "small" | "medium" | "large";
-  /** Button contents */
   label: string;
-  /** Optional click handler */
   onClick?: () => void;
+  width?: string;
+  height?: string;
+  type?: "primary" | "secondary";
+  noBorder?: boolean;
 }
 
-/** Primary UI component for user interaction */
-export const Button = ({
-  primary = false,
-  size = "medium",
-  backgroundColor,
+export const Button: React.FC<ButtonProps> = ({
   label,
-  ...props
-}: ButtonProps) => {
-  const sizeClasses = {
-    small: "px-4 py-2 text-sm",
-    medium: "px-6 py-3 text-base",
-    large: "px-8 py-4 text-lg",
-  };
+  onClick,
+  width = "120px",
+  height = "48px",
+  type = "primary",
+  noBorder = false,
+}) => {
+  const typeClasses =
+    type === "primary"
+      ? "bg-accent text-white border-transparent"
+      : "border-accent text-accent";
 
-  const mode = primary
-    ? "bg-blue-500 text-white"
-    : "bg-transparent text-gray-800 border border-gray-300";
+  const borderClass = noBorder ? "" : "border";
 
   return (
     <button
       type="button"
-      className={`inline-block cursor-pointer font-semibold rounded-full ${sizeClasses[size]} ${mode}`}
-      style={{ backgroundColor }}
-      {...props}
+      onClick={onClick}
+      style={{ width, height }}
+      className={`cursor-pointer text-sm font-bold p-5 rounded-[8px] flex justify-center items-center transition-all duration-500 ${borderClass} ${typeClasses}`}
     >
       {label}
     </button>

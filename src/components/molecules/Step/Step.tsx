@@ -17,7 +17,7 @@ export const Step: React.FC<StepProps> = ({
   hasIssue = false,
 }) => {
   const containerClasses = clsx(
-    "flex rounded-[8px] gap-3 px-2 py-3 items-center border-2",
+    "flex rounded-[8px] gap-3 px-2 py-3 items-center border",
     {
       "justify-between": hasIssue,
       "justify-start": !hasIssue,

@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 
-import { Button } from "./Button";
+import { Button, ButtonProps } from "./Button";
 
-const meta = {
+const meta: Meta<ButtonProps> = {
   title: "Atoms/Button",
   component: Button,
   parameters: {
@@ -11,37 +11,74 @@ const meta = {
   },
   tags: ["autodocs"],
   argTypes: {
-    backgroundColor: { control: "color" },
+    type: {
+      control: { type: "radio" },
+      options: ["primary", "secondary"],
+      description: "Specifies the type of the button",
+    },
+    width: {
+      control: { type: "text" },
+      description: "Width of the button (e.g., '120px', '50%')",
+    },
+    height: {
+      control: { type: "text" },
+      description: "Height of the button (e.g., '48px', '3rem')",
+    },
+    label: {
+      control: { type: "text" },
+      description: "Label displayed on the button",
+    },
+    onClick: {
+      action: "clicked",
+      description: "Handler for click events",
+    },
+    noBorder: {
+      control: { type: "boolean" },
+      description: "If true, removes the button's border",
+    },
   },
-  args: { onClick: fn() },
-} satisfies Meta<typeof Button>;
+  args: {
+    onClick: fn(),
+  },
+};
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+
+type Story = StoryObj<ButtonProps>;
 
 export const Primary: Story = {
   args: {
-    primary: true,
-    label: "Button",
+    type: "primary",
+    label: "Primary Button",
+    width: "120px",
+    height: "48px",
   },
 };
 
 export const Secondary: Story = {
   args: {
-    label: "Button",
+    type: "secondary",
+    label: "Secondary Button",
+    width: "120px",
+    height: "48px",
   },
 };
 
-export const Large: Story = {
+export const CustomSize: Story = {
   args: {
-    size: "large",
-    label: "Button",
+    type: "primary",
+    label: "Custom Size Button",
+    width: "200px",
+    height: "60px",
   },
 };
 
-export const Small: Story = {
+export const NoBorder: Story = {
   args: {
-    size: "small",
-    label: "Button",
+    type: "secondary",
+    label: "No Border Button",
+    width: "120px",
+    height: "48px",
+    noBorder: true,
   },
 };

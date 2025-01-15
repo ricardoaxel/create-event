@@ -13,8 +13,6 @@ body {
   height: 100%;
   margin: 0;
   overflow: hidden;
-  -webkit-font-smoothing: antialiased; /* Smooths fonts for better appearance */
-  -moz-osx-font-smoothing: grayscale; /* On Firefox (macOS) */
 }
 
 body {
@@ -35,6 +33,8 @@ h1 {
     --bg-tertiary: #141416;
     --bg-header: #000000;
     --bg-warning: #e74c3c;
+    --bg-accent-opacity: rgba(67, 35, 255, 0.1);
+    --border-accent-opacity: rgba(67, 35, 255, 0.4);
     --border-selected: #2f2f31;
     --accent: #4323ff;
     --disabled: #302e31;

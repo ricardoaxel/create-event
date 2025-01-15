@@ -6,21 +6,26 @@ export default {
       textColor: {
         secondary: "var(--text-secondary)",
         warning: "var(--text-warning)",
+        accent: "var(--accent)",
       },
       backgroundColor: {
         primary: "var(--bg-primary)",
         header: "var(--bg-header)",
         tertiary: "var(--bg-tertiary)",
         accent: "var(--accent)",
+        "accent-opacity": "var(--bg-accent-opacity)",
         disabled: "var(--disabled)",
         success: "var(--success)",
         warning: "var(--bg-warning)",
       },
+
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
       },
       borderColor: {
         selected: "var(--border-selected)",
+        accent: "var(--accent)",
+        "accent-opacity": "var(--border-accent-opacity)",
       },
     },
   },
