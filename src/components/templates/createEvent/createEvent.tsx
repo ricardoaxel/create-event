@@ -6,10 +6,11 @@ import {
   Selector,
   InputText,
   ImagePicker,
+  LabeledCheckbox,
 } from "@components/molecules";
 import { StepNavigator } from "@components/organisms";
 import { SelectorOption } from "@components/molecules/Selector/Selector";
-import { Checkbox } from "@components/atoms";
+import { NavigationButton } from "@components/atoms";
 
 const options = [
   { id: 1, name: "Tom Cook" },
@@ -56,7 +57,7 @@ function CreateEvent() {
       />
       <div className="p-5 flex-1">
         <h2 className="font-semibold text-2xl">Basic Information</h2>
-        <div className="p-5 border-selected  rounded-[8px] border flex-1 flex  flex-col ">
+        <div className="mt-5 p-5 border-selected  rounded-[8px] border flex-1 flex  flex-col ">
           <ToggleButton
             leftText="Enable Event"
             rightText="Disable Event"
@@ -82,11 +83,16 @@ function CreateEvent() {
               </FormFieldContainer>
             </div>
             <ImagePicker onImageUpload={(c) => console.log(c)} />
-            <Checkbox
-              checked={true}
+            <LabeledCheckbox
+              checked={overlayTitle}
               onChange={(overlayTitle) => setOverlayTitle(overlayTitle)}
+              label="Overlay Title on Banner"
+              className="mt-5"
             />
           </div>
+        </div>
+        <div className="bg-red-200 text-end mt-6">
+          <NavigationButton onClick={() => console.log("previous")} />
         </div>
       </div>
     </div>

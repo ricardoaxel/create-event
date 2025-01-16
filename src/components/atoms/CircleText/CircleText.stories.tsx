@@ -2,7 +2,7 @@ import { CircleText, CircleTextProps } from "./CircleText";
 import { Meta, StoryFn } from "@storybook/react";
 
 export default {
-  title: "Components/CircleText",
+  title: "Atoms/CircleText",
   component: CircleText,
   argTypes: {
     content: { control: "text" },

@@ -4,6 +4,7 @@ import { Step } from "./Step/Step";
 import { ToggleButton } from "./ToggleButton/ToggleButton";
 import { InputText } from "./InputText/InputText";
 import { ImagePicker } from "./ImagePicker/ImagePicker";
+import { LabeledCheckbox } from "./LabeledCheckBox/LabeledCheckBox";
 
 export {
   Step,
@@ -12,4 +13,5 @@ export {
   FormFieldContainer,
   InputText,
   ImagePicker,
+  LabeledCheckbox,
 };
