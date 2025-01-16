@@ -32,6 +32,9 @@ export default {
         "input-focus-opacity": "var(--border-input-focus-opacity)",
         "drag-and-drop": "var(--border-drag-and-drop)",
       },
+      colors: {
+        "text-secondary": "var(--text-secondary)",
+      },
     },
   },
   plugins: [],

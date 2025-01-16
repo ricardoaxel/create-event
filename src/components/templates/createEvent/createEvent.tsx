@@ -9,6 +9,7 @@ import {
 } from "@components/molecules";
 import { StepNavigator } from "@components/organisms";
 import { SelectorOption } from "@components/molecules/Selector/Selector";
+import { Checkbox } from "@components/atoms";
 
 const options = [
   { id: 1, name: "Tom Cook" },
@@ -33,6 +34,8 @@ function CreateEvent() {
   const [warningMessage, setWarningMessage] = useState(
     "Error in input happening"
   );
+
+  const [overlayTitle, setOverlayTitle] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
@@ -79,6 +82,10 @@ function CreateEvent() {
               </FormFieldContainer>
             </div>
             <ImagePicker onImageUpload={(c) => console.log(c)} />
+            <Checkbox
+              checked={true}
+              onChange={(overlayTitle) => setOverlayTitle(overlayTitle)}
+            />
           </div>
         </div>
       </div>
