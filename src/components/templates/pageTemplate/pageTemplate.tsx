@@ -68,7 +68,10 @@ export const PageTemplate: React.FC<PageTemplateProps> = ({
             />
           </div>
 
-          <Button label="Save" className="self-end mt-10 w-[120px]" />
+          <Button
+            label="Save"
+            className="self-end mt-10 w-[120px] max-h-[148px] h-[48px]"
+          />
         </div>
       </div>
     </div>

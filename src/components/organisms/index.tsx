@@ -1,5 +1,6 @@
-import { BasicInformationForm } from "./BasicInformation/BasicInformation";
+import { BasicInformationForm } from "./BasicInformationForm/BasicInformationForm";
+import { DetailsForm } from "./DetailsForm/DetailsForm";
 import { Header } from "./Header/Header";
 import { StepNavigator } from "./StepNavigator/StepNavigator";
 
-export { Header, StepNavigator, BasicInformationForm };
+export { Header, StepNavigator, BasicInformationForm, DetailsForm };

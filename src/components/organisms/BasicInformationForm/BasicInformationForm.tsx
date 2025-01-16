@@ -46,7 +46,7 @@ export const BasicInformationForm: React.FC = () => {
   };
 
   return (
-    <div className="mt-5 p-5 border-selected  rounded-[8px] border flex-1 flex  flex-col ">
+    <div className="mt-5 p-5 border-selected  rounded-[8px] border flex-1 flex  flex-col gap-5">
       <ToggleButton
         leftText="Enable Event"
         rightText="Disable Event"
@@ -54,34 +54,31 @@ export const BasicInformationForm: React.FC = () => {
         leftSideActive={isEventEnabled}
         className={"self-center"}
       />
-      <div className="mt-5 flex flex-col ">
-        <div className="flex flex-1 gap-5 mb-5">
-          <FormFieldContainer label="Email" className="flex-1">
-            <Selector
-              options={options}
-              value={selectedOption}
-              onChange={handleChange}
-            />
-          </FormFieldContainer>
-          <FormFieldContainer label="Event Name" className="flex-1">
-            <InputText
-              warningMessage={warningMessage}
-              value={inputValue}
-              onChange={handleInputChange}
-            />
-          </FormFieldContainer>
-        </div>
-        <ImagePicker
-          onImageUpload={(c) => console.log(c)}
-          overlayTitle="Food & Wine Festival"
-        />
-        <LabeledCheckbox
-          checked={overlayTitle}
-          onChange={(overlayTitle) => setOverlayTitle(overlayTitle)}
-          label="Overlay Title on Banner"
-          className="mt-5"
-        />
+      <div className="flex flex-1 gap-5">
+        <FormFieldContainer label="Email" className="flex-1">
+          <Selector
+            options={options}
+            value={selectedOption}
+            onChange={handleChange}
+          />
+        </FormFieldContainer>
+        <FormFieldContainer label="Event Name" className="flex-1">
+          <InputText
+            warningMessage={warningMessage}
+            value={inputValue}
+            onChange={handleInputChange}
+          />
+        </FormFieldContainer>
       </div>
+      <ImagePicker
+        onImageUpload={(c) => console.log(c)}
+        overlayTitle="Food & Wine Festival"
+      />
+      <LabeledCheckbox
+        checked={overlayTitle}
+        onChange={(overlayTitle) => setOverlayTitle(overlayTitle)}
+        label="Overlay Title on Banner"
+      />
     </div>
   );
 };

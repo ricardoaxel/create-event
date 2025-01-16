@@ -24,7 +24,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   const borderClass = noBorder ? "" : "border";
 
-  const buttonClass = `z-20 flex-1 text-center font-bold transition ${"text-primary hover:text-white"}`;
+  const buttonClass = `z-20 text-center font-bold transition ${"text-primary hover:text-white"}`;
 
   return (
     <button
