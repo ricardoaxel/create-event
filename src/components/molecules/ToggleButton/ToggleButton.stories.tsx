@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { Meta, StoryFn } from "@storybook/react";
+
 import { ToggleButton, ToggleButtonProps } from "./ToggleButton";
 import { fn } from "@storybook/test";
 
@@ -51,11 +53,19 @@ LeftSideInactive.args = {
   handleToggle: fn(),
 };
 
-export const CustomLabels: Story = (args) => <ToggleButton {...args} />;
+export const WithState: Story = () => {
+  const [isLeftActive, setIsLeftActive] = useState(true);
 
-CustomLabels.args = {
-  leftText: "Activate",
-  rightText: "Deactivate",
-  leftSideActive: true,
-  handleToggle: fn(),
+  const handleToggle = () => {
+    setIsLeftActive((prev) => !prev);
+  };
+
+  return (
+    <ToggleButton
+      leftText="On"
+      rightText="Off"
+      leftSideActive={isLeftActive}
+      handleToggle={handleToggle}
+    />
+  );
 };

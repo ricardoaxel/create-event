@@ -51,7 +51,7 @@ export const Selector: React.FC<SelectorProps> = ({
             >
               <SuccessIcon
                 className="invisible group-data-[selected]:visible"
-                strokeColor="var(--success)"
+                strokeColor="rgba(var(--success))"
               />
               <div className="text-sm/6 text-white">{option.name}</div>
             </ListboxOption>

@@ -8,32 +8,36 @@ export interface ToggleButtonProps {
   className?: string;
 }
 
-export const ToggleButton: React.FC<ToggleButtonProps> = ({
+export const ToggleButton = ({
   leftText,
   rightText,
   leftSideActive = true,
   handleToggle,
   className = "",
-}) => {
+}: ToggleButtonProps) => {
+  const handleClickLeft = () => handleToggle(true);
+  const handleClickRight = () => handleToggle(false);
+
   return (
     <div
-      className={`inline-flex border border-accent-opacity rounded-[8px] bg-accent-opacity ${className}`}
+      className={`bg-accent/10 relative inline-flex overflow-hidden whitespace-nowrap rounded-lg border border-accent/40 ${className}`}
     >
+      <div
+        className={`absolute left-0 top-0 h-full w-1/2 rounded-lg bg-accent transition-all duration-200 ${
+          leftSideActive ? "translate-x-0" : "translate-x-full"
+        }`}
+      ></div>
+
       <Button
         label={leftText}
-        width="151px"
-        height="40px"
-        type={leftSideActive ? "primary" : "secondary"}
-        onClick={() => handleToggle(true)}
-        noBorder
+        onClick={handleClickLeft}
+        className={`bg-transparent ${leftSideActive ? "" : "text-accent"}`}
       />
+
       <Button
         label={rightText}
-        width="151px"
-        height="40px"
-        type={!leftSideActive ? "primary" : "secondary"}
-        onClick={() => handleToggle(false)}
-        noBorder
+        onClick={handleClickRight}
+        className={`bg-transparent ${!leftSideActive ? "" : "text-accent"}`}
       />
     </div>
   );

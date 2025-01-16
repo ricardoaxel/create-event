@@ -19,8 +19,8 @@ export const InputText: React.FC<InputTextProps> = ({
     "focus:outline-none border",
     "transition-colors duration-200 ease-in-out",
     warningMessage
-      ? "border-warning bg-warning-opacity focus:border-warning focus:ring-warning"
-      : "border-transparent bg-selection focus:border-input-focus-opacity focus:ring-input-focus-opacity",
+      ? "border-warning bg-warning/10 focus:border-warning focus:ring-warning"
+      : "border-transparent bg-selection focus:border-primary/20 focus:ring-primary/20",
     "placeholder:text-secondary placeholder:font-normal"
   );
 

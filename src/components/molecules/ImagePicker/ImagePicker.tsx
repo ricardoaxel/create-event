@@ -58,7 +58,7 @@ export const ImagePicker: React.FC<ImagePickerProps> = ({
     input.click();
   };
 
-  const containerClasses = `relative w-full h-[244px] rounded-2xl border-drag-and-drop border-dashed flex flex-col gap-[12px] justify-center items-center cursor-pointer transition-all duration-300 ease-in-out
+  const containerClasses = `relative w-full h-[244px] rounded-2xl border-primary/10 border-dashed flex flex-col gap-[12px] justify-center items-center cursor-pointer transition-all duration-300 ease-in-out
     ${isDragging || isHovered ? "bg-accent" : "bg-selection"} 
     ${backgroundImage ? "bg-cover bg-center border-transparent" : "border"}`;
 
@@ -79,7 +79,7 @@ export const ImagePicker: React.FC<ImagePickerProps> = ({
     >
       {!isDragging && !isHovered && backgroundImage && overlayTitle && (
         <span
-          className="text-white text-center px-4 bg-banner-opacity 
+          className="text-white text-center px-4 bg-header/15 
           flex-1 w-full flex items-center justify-center rounded-2xl
           font-bold text-4xl"
         >

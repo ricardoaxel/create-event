@@ -82,3 +82,13 @@ export const NoBorder: Story = {
     noBorder: true,
   },
 };
+
+export const CustomClass: Story = {
+  args: {
+    type: "primary",
+    label: "Custom Class",
+    width: "120px",
+    height: "48px",
+    className: "bg-red-300",
+  },
+};

@@ -24,8 +24,8 @@ export const NavigationButton: React.FC<NavigationButtonProps> = ({
         ${className}`}
     >
       <ArrowIcon
-        strokeColor={"var(--text-primary)"}
-        className={`transition-transform duration-200 transform group-hover:scale-110 group-hover:stroke-[var(--hover-color)] ${
+        strokeColor={"rgba(var(--text-primary))"}
+        className={`transition-transform duration-200 transform group-hover:scale-110  ${
           isPrevious ? "rotate-90" : "-rotate-90"
         }`}
       />
