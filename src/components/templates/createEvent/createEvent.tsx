@@ -91,8 +91,13 @@ function CreateEvent() {
             />
           </div>
         </div>
-        <div className="bg-red-200 text-end mt-6">
-          <NavigationButton onClick={() => console.log("previous")} />
+        <div className="mt-6 flex justify-end gap-6">
+          <NavigationButton onClick={() => console.log("previous")} disabled />
+          <NavigationButton
+            onClick={() => console.log("previous")}
+            isPrevious={false}
+            className="bg-red-400"
+          />
         </div>
       </div>
     </div>
