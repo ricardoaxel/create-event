@@ -19,6 +19,7 @@ export default {
         warning: "var(--bg-warning)",
         "warning-opacity": "var(--bg-warning-opacity)",
         selection: "var(--selection)",
+        "banner-opacity": "var(--bg-banner-opacity)",
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
@@ -29,6 +30,7 @@ export default {
         accent: "var(--accent)",
         "accent-opacity": "var(--border-accent-opacity)",
         "input-focus-opacity": "var(--border-input-focus-opacity)",
+        "drag-and-drop": "var(--border-drag-and-drop)",
       },
     },
   },

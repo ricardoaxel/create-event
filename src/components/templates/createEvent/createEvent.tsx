@@ -5,6 +5,7 @@ import {
   ToggleButton,
   Selector,
   InputText,
+  ImagePicker,
 } from "@components/molecules";
 import { StepNavigator } from "@components/organisms";
 import { SelectorOption } from "@components/molecules/Selector/Selector";
@@ -60,21 +61,24 @@ function CreateEvent() {
             leftSideActive={isEventEnabled}
             className={"self-center"}
           />
-          <div className="mt-5 flex gap-5">
-            <FormFieldContainer label="Email" className="flex-1">
-              <Selector
-                options={options}
-                value={selectedOption}
-                onChange={handleChange}
-              />
-            </FormFieldContainer>
-            <FormFieldContainer label="Event Name" className="flex-1">
-              <InputText
-                warningMessage={warningMessage}
-                value={inputValue}
-                onChange={handleInputChange}
-              />
-            </FormFieldContainer>
+          <div className="mt-5 flex flex-col ">
+            <div className="flex flex-1 gap-5 mb-5">
+              <FormFieldContainer label="Email" className="flex-1">
+                <Selector
+                  options={options}
+                  value={selectedOption}
+                  onChange={handleChange}
+                />
+              </FormFieldContainer>
+              <FormFieldContainer label="Event Name" className="flex-1">
+                <InputText
+                  warningMessage={warningMessage}
+                  value={inputValue}
+                  onChange={handleInputChange}
+                />
+              </FormFieldContainer>
+            </div>
+            <ImagePicker onImageUpload={(c) => console.log(c)} />
           </div>
         </div>
       </div>
