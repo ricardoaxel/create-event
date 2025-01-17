@@ -6,7 +6,6 @@ import {
   Selector,
 } from "@components/molecules";
 import { FormTemplate } from "@components/templates";
-import { InputNumber } from "@components/atoms";
 import { SelectorOption } from "@components/molecules/Selector/Selector";
 
 const options = [
@@ -16,6 +15,9 @@ const options = [
   { id: 4, name: "Arlene Mccoy" },
   { id: 5, name: "Devon Webb" },
 ];
+
+type ValuePiece = Date | null;
+type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 export const DatesForm: React.FC = () => {
   const [selectedOption, setSelectedOption] = useState<SelectorOption>(
@@ -28,12 +30,10 @@ export const DatesForm: React.FC = () => {
     console.log("Text changed:", value);
   };
 
-  const [dateRange, setDateRange] = useState<[Date, Date] | null>([
-    new Date(),
-    new Date(),
-  ]);
+  // The state for dateRange is now typed as Value
+  const [dateRange, setDateRange] = useState<Value>([new Date(), new Date()]);
 
-  const handleDateChange = (newDateRange: [Date, Date] | null) => {
+  const handleDateChange = (newDateRange: Value) => {
     setDateRange(newDateRange);
   };
 
@@ -41,31 +41,39 @@ export const DatesForm: React.FC = () => {
     <>
       <FormTemplate>
         <FormFieldContainer
-          label="Link"
+          label="Bookable Start & End Dates"
           className="flex-1"
+          tooltipMessage="Lorem ipsum dolor sit amet consectetur. Urna ac duis a gravida."
           renderInput={(inputProps) => (
-            <InputText
-              value={"https://crewfare.com/events/event-name/"}
-              onChange={() =>
-                handleTextChange("https://crewfare.com/events/event-name/")
-              }
+            <InputDatePicker
+              value={dateRange}
+              onChange={handleDateChange}
               {...inputProps}
             />
           )}
         />
-        <div className="flex gap-5">
-          <FormFieldContainer
-            label="Link"
-            className="flex-1"
-            renderInput={(inputProps) => (
-              <InputDatePicker
-                value={dateRange}
-                onChange={handleDateChange}
-                {...inputProps}
-              />
-            )}
-          />
-        </div>
+        <FormFieldContainer
+          label="Event Start and End Dates"
+          className="flex-1"
+          renderInput={(inputProps) => (
+            <InputDatePicker
+              value={dateRange}
+              onChange={handleDateChange}
+              {...inputProps}
+            />
+          )}
+        />
+        <FormFieldContainer
+          label="Default Check-In & Check-Out Dates"
+          className="flex-1"
+          renderInput={(inputProps) => (
+            <InputDatePicker
+              value={dateRange}
+              onChange={handleDateChange}
+              {...inputProps}
+            />
+          )}
+        />
       </FormTemplate>
       <div className="flex gap-3 mt-6 flex-col">
         <h3 className="font-medium text-sm">Taxes & Fees</h3>

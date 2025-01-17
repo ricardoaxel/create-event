@@ -1,0 +1,8 @@
+.customStyles {
+  color: rgba(var(--bg-header));
+  background: rgba(var(--text-primary));
+  max-width: 242px;
+  padding: 8px 9px 8px 9px;
+  font-size: 12px;
+  font-weight: 600;
+}

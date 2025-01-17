@@ -18,6 +18,7 @@ export default {
         success: "rgba(var(--success))",
         warning: "rgba(var(--bg-warning))",
         selection: "rgba(var(--selection))",
+        tooltip: "rgba(var(--text-primary))",
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],

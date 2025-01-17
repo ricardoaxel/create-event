@@ -1,5 +1,7 @@
 import React, { ReactElement } from "react";
 import clsx from "clsx";
+import { Tooltip } from "@components/atoms";
+import { info } from "@assets";
 
 export interface InputProps {
   inputContainerClasses?: string;
@@ -10,6 +12,7 @@ export interface FormFieldContainerProps {
   renderInput: (props: InputProps) => ReactElement; // Render prop for input
   className?: string;
   warningMessage?: string;
+  tooltipMessage?: string;
 }
 
 export const FormFieldContainer: React.FC<FormFieldContainerProps> = ({
@@ -17,6 +20,7 @@ export const FormFieldContainer: React.FC<FormFieldContainerProps> = ({
   renderInput,
   className = "",
   warningMessage,
+  tooltipMessage,
 }) => {
   const inputContainerClasses = clsx(
     "w-full h-[48px] rounded-[8px] font-medium text-[14px] px-[12px] flex flex-row items-center justify-between gap-2",
@@ -34,8 +38,21 @@ export const FormFieldContainer: React.FC<FormFieldContainerProps> = ({
   };
 
   return (
-    <div className={`form-field-container ${className}`}>
-      <label className="block text-sm font-medium">{label}</label>
+    <div className={`form-field-container ${className} `}>
+      <label className="flex text-sm font-medium gap-2">
+        {label}{" "}
+        {tooltipMessage && (
+          <>
+            <img
+              src={info}
+              data-tooltip-id="info-tooltip"
+              className="cursor-help"
+            />
+            <Tooltip id="info-tooltip" content={tooltipMessage} place="top" />
+          </>
+        )}
+      </label>
+
       <div className="mt-3">
         {renderInput(inputProps)} {/* Render the input using the render prop */}
       </div>
