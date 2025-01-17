@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import {
   FormFieldContainer,
+  ImageLabel,
   InputDatePicker,
   InputText,
   Selector,
 } from "@components/molecules";
 import { FormTemplate } from "@components/templates";
 import { SelectorOption } from "@components/molecules/Selector/Selector";
+import { trash } from "@assets";
 
 const options = [
   { id: 1, name: "Tom Cook" },
@@ -63,6 +65,10 @@ export const DatesForm: React.FC = () => {
             />
           )}
         />
+        <ImageLabel
+          label="Add Event Date Range"
+          onClick={() => console.log("Clicked add Event Date Range")}
+        />
         <FormFieldContainer
           label="Default Check-In & Check-Out Dates"
           className="flex-1"
@@ -118,7 +124,12 @@ export const DatesForm: React.FC = () => {
               />
             )}
           />
+          <img src={trash} className="self-end mb-3" />
         </div>
+        <ImageLabel
+          label="Add New Tax/Fee"
+          onClick={() => console.log("Clicked Add New Tax/Fee")}
+        />
       </div>
     </>
   );

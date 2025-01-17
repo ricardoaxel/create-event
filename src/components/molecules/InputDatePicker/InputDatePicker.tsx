@@ -20,16 +20,16 @@ type InputDatePickerProps = {
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
-export function InputDatePicker({
+export const InputDatePicker: React.FC<InputDatePickerProps> = ({
   value,
   onChange,
   minDate = new Date(2025, 0, 1),
   maxDate = new Date(2025, 1, 31),
   inputContainerClasses,
-}: InputDatePickerProps) {
+}) => {
   return (
     <DateRangePicker
-      className={inputContainerClasses}
+      className={`${inputContainerClasses} `}
       onChange={onChange}
       value={value}
       minDate={minDate}
@@ -38,4 +38,4 @@ export function InputDatePicker({
       calendarIcon={<img src={calendar} />}
     />
   );
-}
+};

@@ -4,10 +4,11 @@ export default {
   theme: {
     extend: {
       textColor: {
+        primary: "rgba(var(--text-primary))",
         secondary: "rgba(var(--text-secondary))",
         warning: "rgba(var(--text-warning))",
         accent: "rgba(var(--accent))",
-        accent2: "#111111",
+        success: "rgba(var(--success))",
       },
       backgroundColor: {
         primary: "rgba(var(--bg-primary))",

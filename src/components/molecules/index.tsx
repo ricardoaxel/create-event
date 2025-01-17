@@ -7,6 +7,7 @@ import { ImagePicker } from "./ImagePicker/ImagePicker";
 import { LabeledCheckbox } from "./LabeledCheckBox/LabeledCheckBox";
 import { InputNumber } from "./InputNumber/InputNumber";
 import { InputDatePicker } from "./InputDatePicker/InputDatePicker";
+import { ImageLabel } from "./ImageLabel/ImageLabel";
 
 export {
   Step,
@@ -18,4 +19,5 @@ export {
   LabeledCheckbox,
   InputNumber,
   InputDatePicker,
+  ImageLabel,
 };

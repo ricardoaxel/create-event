@@ -8,13 +8,13 @@ export interface ToggleButtonProps {
   className?: string;
 }
 
-export const ToggleButton = ({
+export const ToggleButton: React.FC<ToggleButtonProps> = ({
   leftText,
   rightText,
   leftSideActive = true,
   handleToggle,
   className = "",
-}: ToggleButtonProps) => {
+}) => {
   const handleClickLeft = () => handleToggle(true);
   const handleClickRight = () => handleToggle(false);
 
