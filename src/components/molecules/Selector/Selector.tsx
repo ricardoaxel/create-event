@@ -17,29 +17,27 @@ export interface SelectorProps {
   options: SelectorOption[];
   value: SelectorOption;
   onChange: (selected: SelectorOption) => void;
+  inputContainerClasses?: string;
 }
 
 export const Selector: React.FC<SelectorProps> = ({
   options,
   value,
   onChange,
+  inputContainerClasses,
 }) => {
   return (
     <Listbox value={value} onChange={onChange}>
       <div className="w-full">
-        <ListboxButton
-          className={clsx(
-            "w-full bg-selection h-[48px] rounded-[8px] font-medium text-[14px] px-[12px] flex flex-row items-center justify-between gap-2"
-          )}
-        >
+        <ListboxButton className={inputContainerClasses}>
           {value.name}
-          <ArrowIcon />
+          <ArrowIcon className="mr-[6px]" />
         </ListboxButton>
         <ListboxOptions
           anchor="bottom"
           transition
           className={clsx(
-            "w-[var(--button-width)] rounded-[8px] bg-selection focus:outline-none",
+            "w-[var(--button-width)] rounded-[8px] bg-selection/80 focus:outline-none border border-primary/10",
             "transition duration-100 ease-in data-[leave]:data-[closed]:opacity-0"
           )}
         >
@@ -53,7 +51,7 @@ export const Selector: React.FC<SelectorProps> = ({
                 className="invisible group-data-[selected]:visible"
                 strokeColor="rgba(var(--success))"
               />
-              <div className="text-sm/6 text-white">{option.name}</div>
+              <div className="text-sm/6 ">{option.name}</div>
             </ListboxOption>
           ))}
         </ListboxOptions>

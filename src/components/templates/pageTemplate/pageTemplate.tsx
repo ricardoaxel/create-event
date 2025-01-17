@@ -32,8 +32,22 @@ export const PageTemplate: React.FC<PageTemplateProps> = ({
     checkOverflow();
     window.addEventListener("resize", checkOverflow);
 
+    // Use a MutationObserver to detect DOM changes
+    const observer = new MutationObserver(() => {
+      checkOverflow();
+    });
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current, {
+        childList: true,
+        subtree: true,
+        characterData: true,
+      });
+    }
+
     return () => {
       window.removeEventListener("resize", checkOverflow);
+      observer.disconnect();
     };
   }, []);
 

@@ -8,6 +8,7 @@ import {
   LabeledCheckbox,
 } from "@components/molecules";
 import { SelectorOption } from "@components/molecules/Selector/Selector";
+import { FormTemplate } from "@components/templates";
 
 const options = [
   { id: 1, name: "Tom Cook" },
@@ -46,7 +47,7 @@ export const BasicInformationForm: React.FC = () => {
   };
 
   return (
-    <div className="mt-5 p-5 border-selected  rounded-[8px] border flex-1 flex  flex-col gap-5">
+    <FormTemplate>
       <ToggleButton
         leftText="Enable Event"
         rightText="Disable Event"
@@ -55,20 +56,31 @@ export const BasicInformationForm: React.FC = () => {
         className={"self-center"}
       />
       <div className="flex flex-1 gap-5">
-        <FormFieldContainer label="Email" className="flex-1">
-          <Selector
-            options={options}
-            value={selectedOption}
-            onChange={handleChange}
-          />
-        </FormFieldContainer>
-        <FormFieldContainer label="Event Name" className="flex-1">
-          <InputText
-            warningMessage={warningMessage}
-            value={inputValue}
-            onChange={handleInputChange}
-          />
-        </FormFieldContainer>
+        <FormFieldContainer
+          label="Event Name"
+          className="flex-1"
+          renderInput={(inputProps) => (
+            <Selector
+              options={options}
+              value={selectedOption}
+              onChange={handleChange}
+              {...inputProps}
+            />
+          )}
+        />
+
+        <FormFieldContainer
+          label="Event Name"
+          className="flex-1"
+          warningMessage={warningMessage}
+          renderInput={(inputProps) => (
+            <InputText
+              value={inputValue}
+              onChange={handleInputChange}
+              {...inputProps}
+            />
+          )}
+        />
       </div>
       <ImagePicker
         onImageUpload={(c) => console.log(c)}
@@ -79,6 +91,18 @@ export const BasicInformationForm: React.FC = () => {
         onChange={(overlayTitle) => setOverlayTitle(overlayTitle)}
         label="Overlay Title on Banner"
       />
-    </div>
+
+      <FormFieldContainer
+        label="Event Name"
+        className="flex-1"
+        renderInput={(inputProps) => (
+          <InputText
+            value={inputValue}
+            onChange={handleInputChange}
+            {...inputProps}
+          />
+        )}
+      />
+    </FormTemplate>
   );
 };

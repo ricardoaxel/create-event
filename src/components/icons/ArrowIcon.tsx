@@ -1,30 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 
 interface IconProps {
   width?: string | number;
   height?: string | number;
   strokeColor?: string;
+  strokeHoverColor?: string;
   className?: string;
 }
 
 export const ArrowIcon: React.FC<IconProps> = ({
-  width = 24,
-  height = 24,
+  width = 14,
+  height = 8,
   strokeColor = "#4FF6B1",
+  strokeHoverColor = strokeColor,
   className = "",
 }) => {
+  const [currentStrokeColor, setCurrentStrokeColor] = useState(strokeColor);
+
   return (
     <svg
       width={width}
       height={height}
-      viewBox="0 0 24 24"
+      viewBox="0 0 14 8"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={className}
+      className={`${className}`}
+      onMouseEnter={() => setCurrentStrokeColor(strokeHoverColor)}
+      onMouseLeave={() => setCurrentStrokeColor(strokeColor)}
     >
       <path
-        d="M18 9L12 15L6 9"
-        stroke={strokeColor}
+        d="M13 1L7 7L1 1"
+        className={`transition-colors duration-150 ease-in-out `}
+        stroke={currentStrokeColor}
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
