@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import { FormFieldContainer, InputText } from "@components/molecules";
+import {
+  FormFieldContainer,
+  InputNumber,
+  InputText,
+} from "@components/molecules";
 import { FormTemplate } from "@components/templates";
-import { InputNumber } from "@components/atoms";
 
 export const DetailsForm: React.FC = () => {
   const [number, setNumber] = useState("2");
@@ -31,11 +34,11 @@ export const DetailsForm: React.FC = () => {
       />
       <div className="flex flex-wrap gap-5">
         <FormFieldContainer
-          label="Link"
+          label="Event Address"
           className="flex-1 min-w-[calc(50%-10px)]"
           renderInput={(inputProps) => (
             <InputText
-              value={"https://crewfare.com/events/event-name/"}
+              value={"Type here"}
               onChange={() =>
                 handleTextChange("https://crewfare.com/events/event-name/")
               }
@@ -44,11 +47,11 @@ export const DetailsForm: React.FC = () => {
           )}
         />
         <FormFieldContainer
-          label="Link"
+          label="Featured Hotels Title"
           className="flex-1 min-w-[calc(50%-10px)]"
           renderInput={(inputProps) => (
             <InputText
-              value={"https://crewfare.com/events/event-name/"}
+              value={"Featured Hotels"}
               onChange={() =>
                 handleTextChange("https://crewfare.com/events/event-name/")
               }
@@ -57,7 +60,7 @@ export const DetailsForm: React.FC = () => {
           )}
         />
         <FormFieldContainer
-          label="Link"
+          label="Minimum Nights"
           className="flex-1 min-w-[calc(50%-10px)]"
           renderInput={(inputProps) => (
             <InputText

@@ -1,10 +1,14 @@
-import { BasicInformationForm, DetailsForm } from "@components/organisms";
+import {
+  BasicInformationForm,
+  DatesForm,
+  DetailsForm,
+} from "@components/organisms";
 import { PageTemplate } from "@components/templates";
 import React, { useState } from "react";
 
 const CreateEventPage: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(2);
-  const sectionTitle = "Details";
+  const sectionTitle = "Dates";
 
   return (
     <PageTemplate
@@ -13,7 +17,8 @@ const CreateEventPage: React.FC = () => {
       onStepChange={setCurrentStep}
     >
       {/* <BasicInformationForm /> */}
-      <DetailsForm />
+      {/* <DetailsForm /> */}
+      <DatesForm />
     </PageTemplate>
   );
 };

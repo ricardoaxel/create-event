@@ -5,6 +5,8 @@ import { ToggleButton } from "./ToggleButton/ToggleButton";
 import { InputText } from "./InputText/InputText";
 import { ImagePicker } from "./ImagePicker/ImagePicker";
 import { LabeledCheckbox } from "./LabeledCheckBox/LabeledCheckBox";
+import { InputNumber } from "./InputNumber/InputNumber";
+import { InputDatePicker } from "./InputDatePicker/InputDatePicker";
 
 export {
   Step,
@@ -14,4 +16,6 @@ export {
   InputText,
   ImagePicker,
   LabeledCheckbox,
+  InputNumber,
+  InputDatePicker,
 };

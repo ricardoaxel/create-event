@@ -1,0 +1,68 @@
+.react-calendar {
+  background-color: rgba(var(--selection), 0.9) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+  border: none;
+  overflow: hidden;
+}
+
+.react-daterange-picker__wrapper {
+  border: none;
+  display: flex;
+  gap: 0.25rem;
+}
+
+.react-daterange-picker__inputGroup {
+  flex-grow: 0;
+  padding: 0;
+}
+
+.react-daterange-picker__button {
+  position: absolute;
+  right: 4px;
+}
+
+.react-daterange-picker__inputGroup {
+  min-width: 1rem;
+}
+
+.dateRangePickerClass {
+  background-color: blue;
+}
+
+.react-calendar__navigation button:disabled {
+  background-color: rgba(var(--bg-primary), 1) !important;
+}
+
+.react-calendar__month-view__days__day--weekend {
+  color: white;
+}
+
+.react-calendar__tile--active {
+  background-color: rgba(var(--success), 1);
+}
+.react-calendar__tile--active:hover {
+  background-color: red;
+}
+
+.react-calendar__tile--now {
+  background-color: rgba(var(--success), 0.8) !important;
+}
+
+.react-calendar__tile--active:hover {
+  background: red;
+  color: white;
+}
+
+.react-calendar--selectRange .react-calendar__tile--hover {
+  background-color: rgba(var(--success), 0.7);
+}
+
+.calendar__tile--active:enabled:focus {
+  background-color: rgba(var(--success), 0.8) !important;
+}
+
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
+  background-color: rgba(var(--success), 0.8) !important;
+}

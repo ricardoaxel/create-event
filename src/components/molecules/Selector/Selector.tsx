@@ -37,7 +37,7 @@ export const Selector: React.FC<SelectorProps> = ({
           anchor="bottom"
           transition
           className={clsx(
-            "w-[var(--button-width)] rounded-[8px] bg-selection/80 focus:outline-none border border-primary/10",
+            "w-[var(--button-width)] rounded-[8px] bg-selection/90 z-50 focus:outline-none border border-primary/10",
             "transition duration-100 ease-in data-[leave]:data-[closed]:opacity-0"
           )}
         >
