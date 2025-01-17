@@ -26,7 +26,8 @@
     "baseUrl": "./",
     "paths": {
       "@components/*": ["src/components/*"],
-      "@assets": ["src/assets/index.tsx"] //
+      "@hooks": ["src/hooks/index.tsx"],
+      "@assets": ["src/assets/index.tsx"]
     }
   },
   "include": ["src"]

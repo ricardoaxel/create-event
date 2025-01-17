@@ -23,9 +23,9 @@ export const ImageLabel: React.FC<ImageLabelProps> = ({
       <img
         src={imageSrc}
         alt={label}
-        className="w-6 h-6 object-contain transition-opacity duration-300"
+        className=" transition-opacity duration-300"
       />
-      <span className="font-semibold text-sm text-inherit">{label}</span>
+      <span className="font-semibold text-sm text-success">{label}</span>
     </label>
   );
 };

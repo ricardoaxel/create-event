@@ -1,20 +1,22 @@
 import React, { useEffect, useRef, useState } from "react";
-
 import { StepNavigator } from "@components/organisms";
 import { NavigationButton, Button } from "@components/atoms";
 
-interface PageTemplateProps {
+interface StepData {
   title: string;
+  component: React.ComponentType<any>; // Change this to ComponentType
+}
+
+interface PageTemplateProps {
   currentStep: number;
   onStepChange: (step: number) => void;
-  children: React.ReactNode;
+  steps: StepData[];
 }
 
 export const PageTemplate: React.FC<PageTemplateProps> = ({
-  title,
   currentStep,
   onStepChange,
-  children,
+  steps,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isOverflowing, setIsOverflowing] = useState(false);
@@ -32,7 +34,6 @@ export const PageTemplate: React.FC<PageTemplateProps> = ({
     checkOverflow();
     window.addEventListener("resize", checkOverflow);
 
-    // Use a MutationObserver to detect DOM changes
     const observer = new MutationObserver(() => {
       checkOverflow();
     });
@@ -51,10 +52,18 @@ export const PageTemplate: React.FC<PageTemplateProps> = ({
     };
   }, []);
 
+  const isFirstStep = currentStep === 0;
+  const isLastStep = currentStep === steps.length - 1;
+
+  const previousStep = () => onStepChange(currentStep - 1);
+  const nextStep = () => onStepChange(currentStep + 1);
+
+  const { title, component: Component } = steps[currentStep]; // Destructure to get the component
+
   return (
     <div className="flex-1 flex overflow-hidden">
       <StepNavigator
-        steps={["1", "2", "3"]}
+        steps={steps}
         currentStep={currentStep}
         onStepChange={onStepChange}
       />
@@ -69,16 +78,15 @@ export const PageTemplate: React.FC<PageTemplateProps> = ({
         >
           <h2 className="font-semibold text-2xl">{title}</h2>
 
-          <div>{children}</div>
+          {/* Render the component dynamically like a React component */}
+          <Component />
 
           <div className="mt-6 flex justify-end gap-6">
+            <NavigationButton onClick={previousStep} disabled={isFirstStep} />
             <NavigationButton
-              onClick={() => console.log("previous")}
-              disabled
-            />
-            <NavigationButton
-              onClick={() => console.log("previous")}
+              onClick={nextStep}
               isPrevious={false}
+              disabled={isLastStep}
             />
           </div>
 

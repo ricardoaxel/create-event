@@ -1,25 +1,30 @@
+import React, { useState, useCallback } from "react";
 import {
   BasicInformationForm,
   DatesForm,
   DetailsForm,
 } from "@components/organisms";
 import { PageTemplate } from "@components/templates";
-import React, { useState } from "react";
+
+const steps = [
+  { title: "Basic Information", component: BasicInformationForm },
+  { title: "Details", component: DetailsForm },
+  { title: "Dates", component: DatesForm },
+];
 
 const CreateEventPage: React.FC = () => {
-  const [currentStep, setCurrentStep] = useState(2);
-  const sectionTitle = "Dates";
+  const [currentStep, setCurrentStep] = useState(0);
+
+  const handleStepChange = useCallback((step: number) => {
+    setCurrentStep(step);
+  }, []);
 
   return (
     <PageTemplate
-      title={sectionTitle}
       currentStep={currentStep}
-      onStepChange={setCurrentStep}
-    >
-      {/* <BasicInformationForm /> */}
-      {/* <DetailsForm /> */}
-      <DatesForm />
-    </PageTemplate>
+      onStepChange={handleStepChange}
+      steps={steps}
+    />
   );
 };
 

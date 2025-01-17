@@ -1,8 +1,9 @@
 .customStyles {
-  color: rgba(var(--bg-header));
-  background: rgba(var(--text-primary));
+  color: rgba(var(--bg-header)) !important;
+  background: rgba(var(--text-primary)) !important;
   max-width: 242px;
   padding: 8px 9px 8px 9px;
   font-size: 12px;
   font-weight: 600;
+  border-radius: 8px;
 }

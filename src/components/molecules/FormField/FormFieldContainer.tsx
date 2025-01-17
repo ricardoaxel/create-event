@@ -53,7 +53,7 @@ export const FormFieldContainer: React.FC<FormFieldContainerProps> = ({
         )}
       </label>
 
-      <div className="mc">
+      <div className="mt-3">
         {renderInput(inputProps)} {/* Render the input using the render prop */}
       </div>
       {warningMessage && (
