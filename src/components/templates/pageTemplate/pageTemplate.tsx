@@ -1,23 +1,28 @@
 import React, { useEffect, useRef, useState } from "react";
 import { StepNavigator } from "@components/organisms";
 import { NavigationButton, Button } from "@components/atoms";
+import { FormikContextType } from "formik";
 
-interface StepData {
+interface StepData<T> {
   title: string;
-  component: React.ComponentType<any>; // Change this to ComponentType
+  component: React.ComponentType<{ formProps: FormikContextType<T> }>;
 }
 
-interface PageTemplateProps {
+import { FormikProps } from "formik";
+
+interface PageTemplateProps<T> {
   currentStep: number;
   onStepChange: (step: number) => void;
-  steps: StepData[];
+  steps: StepData<T>[];
+  formProps: FormikProps<T>;
 }
 
-export const PageTemplate: React.FC<PageTemplateProps> = ({
+export const PageTemplate = <T extends {}>({
   currentStep,
   onStepChange,
   steps,
-}) => {
+  formProps,
+}: PageTemplateProps<T>) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isOverflowing, setIsOverflowing] = useState(false);
 
@@ -58,7 +63,7 @@ export const PageTemplate: React.FC<PageTemplateProps> = ({
   const previousStep = () => onStepChange(currentStep - 1);
   const nextStep = () => onStepChange(currentStep + 1);
 
-  const { title, component: Component } = steps[currentStep]; // Destructure to get the component
+  const { title, component: Component } = steps[currentStep];
 
   return (
     <div className="flex-1 flex overflow-hidden">
@@ -77,10 +82,7 @@ export const PageTemplate: React.FC<PageTemplateProps> = ({
           } p-5 overflow-auto flex-1 flex flex-col`}
         >
           <h2 className="font-semibold text-2xl">{title}</h2>
-
-          {/* Render the component dynamically like a React component */}
-          <Component />
-
+          <Component formProps={formProps} />
           <div className="mt-6 flex justify-end gap-6">
             <NavigationButton onClick={previousStep} disabled={isFirstStep} />
             <NavigationButton
@@ -89,7 +91,6 @@ export const PageTemplate: React.FC<PageTemplateProps> = ({
               disabled={isLastStep}
             />
           </div>
-
           <Button
             label="Save"
             className="self-end mt-10 w-[120px] max-h-[148px] h-[48px]"

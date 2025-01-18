@@ -9,6 +9,8 @@ import {
 } from "@components/molecules";
 import { SelectorOption } from "@components/molecules/Selector/Selector";
 import { FormTemplate } from "@components/templates";
+import { FormikProps } from "formik";
+import { FormValues } from "src/pages/CreateEventPage/CreateEventPage";
 
 const options = [
   { id: 1, name: "Tom Cook" },
@@ -18,7 +20,13 @@ const options = [
   { id: 5, name: "Devon Webb" },
 ];
 
-export const BasicInformationForm: React.FC = () => {
+interface BasicInformationFormProps {
+  formProps: FormikProps<FormValues>;
+}
+
+export const BasicInformationForm: React.FC<BasicInformationFormProps> = ({
+  formProps,
+}) => {
   const [isEventEnabled, setIsEventEnabled] = useState<boolean>(true);
   const [selectedOption, setSelectedOption] = useState<SelectorOption>(
     options[0]
@@ -72,11 +80,13 @@ export const BasicInformationForm: React.FC = () => {
         <FormFieldContainer
           label="Event Name"
           className="flex-1"
-          warningMessage={warningMessage}
+          warningMessage={formProps.errors.eventName}
           renderInput={(inputProps) => (
             <InputText
-              value={inputValue}
-              onChange={handleInputChange}
+              value={formProps.values.eventName}
+              onChange={(e) =>
+                formProps.setFieldValue("eventName", e.target.value)
+              }
               {...inputProps}
             />
           )}

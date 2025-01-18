@@ -5,6 +5,18 @@ import {
   DetailsForm,
 } from "@components/organisms";
 import { PageTemplate } from "@components/templates";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+
+export interface FormValues {
+  eventName: string;
+}
+
+const validationSchema = Yup.object({
+  eventName: Yup.string()
+    .min(4, "eventName must be at least 4 characters long")
+    .required("eventName is required"),
+});
 
 const steps = [
   { title: "Basic Information", component: BasicInformationForm },
@@ -15,6 +27,16 @@ const steps = [
 const CreateEventPage: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(0);
 
+  const formik = useFormik<FormValues>({
+    initialValues: {
+      eventName: "asdadsa",
+    },
+    validationSchema,
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
+
   const handleStepChange = useCallback((step: number) => {
     setCurrentStep(step);
   }, []);
@@ -24,6 +46,7 @@ const CreateEventPage: React.FC = () => {
       currentStep={currentStep}
       onStepChange={handleStepChange}
       steps={steps}
+      formProps={formik}
     />
   );
 };
