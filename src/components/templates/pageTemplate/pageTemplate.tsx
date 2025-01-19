@@ -1,14 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
+import { FormikProps, FormikContextType } from "formik";
+
 import { StepNavigator } from "@components/organisms";
 import { NavigationButton, Button } from "@components/atoms";
-import { FormikContextType } from "formik";
 
-interface StepData<T> {
+export interface StepData<T> {
   title: string;
   component: React.ComponentType<{ formProps: FormikContextType<T> }>;
+  key: string;
+  stepState: "completed" | "hasIssues" | null;
 }
-
-import { FormikProps } from "formik";
 
 interface PageTemplateProps<T> {
   currentStep: number;
@@ -26,23 +27,20 @@ export const PageTemplate = <T extends {}>({
   const containerRef = useRef<HTMLDivElement>(null);
   const [isOverflowing, setIsOverflowing] = useState(false);
 
-  const checkOverflow = () => {
+  const checkOverflow = useCallback(() => {
     if (containerRef.current) {
       const hasOverflow =
         containerRef.current.scrollHeight > containerRef.current.clientHeight ||
         containerRef.current.scrollWidth > containerRef.current.clientWidth;
       setIsOverflowing(hasOverflow);
     }
-  };
+  }, []);
 
   useEffect(() => {
     checkOverflow();
     window.addEventListener("resize", checkOverflow);
 
-    const observer = new MutationObserver(() => {
-      checkOverflow();
-    });
-
+    const observer = new MutationObserver(checkOverflow);
     if (containerRef.current) {
       observer.observe(containerRef.current, {
         childList: true,
@@ -55,13 +53,19 @@ export const PageTemplate = <T extends {}>({
       window.removeEventListener("resize", checkOverflow);
       observer.disconnect();
     };
-  }, []);
+  }, [checkOverflow]);
 
   const isFirstStep = currentStep === 0;
   const isLastStep = currentStep === steps.length - 1;
 
-  const previousStep = () => onStepChange(currentStep - 1);
-  const nextStep = () => onStepChange(currentStep + 1);
+  const previousStep = useCallback(
+    () => onStepChange(currentStep - 1),
+    [currentStep, onStepChange]
+  );
+  const nextStep = useCallback(
+    () => onStepChange(currentStep + 1),
+    [currentStep, onStepChange]
+  );
 
   const { title, component: Component } = steps[currentStep];
 
@@ -73,7 +77,7 @@ export const PageTemplate = <T extends {}>({
         onStepChange={onStepChange}
       />
       <form
-        onSubmit={formProps.handleSubmit}
+        onSubmit={formProps?.handleSubmit}
         className={`${isOverflowing ? "pr-[7px]" : ""} flex-1 flex flex-col`}
       >
         <div

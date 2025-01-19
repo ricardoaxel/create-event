@@ -1,36 +1,30 @@
 import { Step } from "@components/molecules";
-import React from "react";
+import { StepData } from "@components/templates/pageTemplate/pageTemplate";
 
-interface StepData {
-  title: string;
-  type?: "success" | "inactive" | "default";
-  hasIssue?: boolean;
-}
-
-interface StepNavigatorProps {
-  steps: StepData[];
+interface StepNavigatorProps<T> {
+  steps: StepData<T>[];
   currentStep: number;
   onStepChange: (step: number) => void;
 }
 
-export const StepNavigator: React.FC<StepNavigatorProps> = ({
+export const StepNavigator = <T,>({
   steps,
   currentStep,
   onStepChange,
-}) => {
+}: StepNavigatorProps<T>) => {
   return (
     <nav className="w-[248px] h-full flex flex-col p-5 bg-tertiary ml-[12.5%]">
       <h1 className="font-bold text-[24px] leading-[32px] mb-5">
         Create Event
       </h1>
-      {steps.map((step, index) => (
+      {steps.map(({ title, stepState, key }, index) => (
         <Step
-          key={index}
-          title={step.title}
+          key={key}
+          title={title}
           stepNumber={(index + 1).toString()}
           isSelected={currentStep === index}
-          type={step.type}
-          hasIssue={step.hasIssue}
+          type={stepState === "completed" ? "success" : "inactive"}
+          hasIssue={stepState === "hasIssues"}
           onClick={() => onStepChange(index)}
         />
       ))}

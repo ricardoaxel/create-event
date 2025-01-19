@@ -1,33 +1,54 @@
-import React, { useState } from "react";
+import React from "react";
+import { FormikProps } from "formik";
 import {
   FormFieldContainer,
   InputNumber,
   InputText,
 } from "@components/molecules";
 import { FormTemplate } from "@components/templates";
+import { FormValues } from "src/pages/CreateEventPage/CreateEventPage";
 
-export const DetailsForm: React.FC = () => {
-  const [number, setNumber] = useState("2");
+interface DetailsFormProps {
+  formProps: FormikProps<FormValues>;
+}
 
-  const handleTextChange = (value: string) => {
-    console.log("Text changed:", value);
-  };
+export const DetailsForm: React.FC<DetailsFormProps> = ({ formProps }) => {
+  const {
+    subdomain,
+    eventAddress,
+    featuredHotelsTitle,
+    venueName,
+    minimumNights,
+  } = formProps.values.details;
 
-  const handleNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNumber(e.target.value);
+  const {
+    subdomain: subdomainError,
+    eventAddress: eventAddressError,
+    venueName: venueNameError,
+    featuredHotelsTitle: featuredHotelsTitleError,
+    minimumNights: minimumNightsError,
+  } = formProps.errors.details || {};
+
+  const handleFieldChange =
+    (field: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      formProps.setFieldValue(`details.${field}`, e.target.value);
+    };
+
+  const handleMinimumNightsChange = (value: number) => {
+    formProps.setFieldValue("details.minimumNights", value);
   };
 
   return (
     <FormTemplate>
       <FormFieldContainer
-        label="Link"
+        label="Subdomain"
+        subLabel="(e.g. crewfare-festival)"
         className="flex-1"
+        warningMessage={subdomainError}
         renderInput={(inputProps) => (
           <InputText
-            value={"https://crewfare.com/events/event-name/"}
-            onChange={() =>
-              handleTextChange("https://crewfare.com/events/event-name/")
-            }
+            value={subdomain}
+            onChange={handleFieldChange("subdomain")}
             {...inputProps}
           />
         )}
@@ -36,12 +57,23 @@ export const DetailsForm: React.FC = () => {
         <FormFieldContainer
           label="Event Address"
           className="flex-1 min-w-[calc(50%-10px)]"
+          warningMessage={eventAddressError}
           renderInput={(inputProps) => (
             <InputText
-              value={"Type here"}
-              onChange={() =>
-                handleTextChange("https://crewfare.com/events/event-name/")
-              }
+              value={eventAddress}
+              onChange={handleFieldChange("eventAddress")}
+              {...inputProps}
+            />
+          )}
+        />
+        <FormFieldContainer
+          label="Venue Name"
+          className="flex-1 min-w-[calc(50%-10px)]"
+          warningMessage={venueNameError}
+          renderInput={(inputProps) => (
+            <InputText
+              value={venueName}
+              onChange={handleFieldChange("venueName")}
               {...inputProps}
             />
           )}
@@ -49,12 +81,11 @@ export const DetailsForm: React.FC = () => {
         <FormFieldContainer
           label="Featured Hotels Title"
           className="flex-1 min-w-[calc(50%-10px)]"
+          warningMessage={featuredHotelsTitleError}
           renderInput={(inputProps) => (
             <InputText
-              value={"Featured Hotels"}
-              onChange={() =>
-                handleTextChange("https://crewfare.com/events/event-name/")
-              }
+              value={featuredHotelsTitle}
+              onChange={handleFieldChange("featuredHotelsTitle")}
               {...inputProps}
             />
           )}
@@ -62,25 +93,13 @@ export const DetailsForm: React.FC = () => {
         <FormFieldContainer
           label="Minimum Nights"
           className="flex-1 min-w-[calc(50%-10px)]"
-          renderInput={(inputProps) => (
-            <InputText
-              value={"https://crewfare.com/events/event-name/"}
-              onChange={() =>
-                handleTextChange("https://crewfare.com/events/event-name/")
-              }
-              {...inputProps}
-            />
-          )}
-        />
-        <FormFieldContainer
-          label="Link"
-          className="flex-1 min-w-[calc(50%-10px)]"
+          warningMessage={minimumNightsError}
           renderInput={(inputProps) => (
             <InputNumber
-              value={number}
-              onChange={handleNumberChange}
-              min={0}
-              max={50}
+              value={minimumNights}
+              onChange={handleMinimumNightsChange}
+              min={1}
+              max={365}
               {...inputProps}
             />
           )}

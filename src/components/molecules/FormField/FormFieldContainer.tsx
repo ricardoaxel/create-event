@@ -9,6 +9,7 @@ export interface InputProps {
 
 export interface FormFieldContainerProps {
   label: string;
+  subLabel?: string;
   renderInput: (props: InputProps) => ReactElement; // Render prop for input
   className?: string;
   warningMessage?: string;
@@ -17,6 +18,7 @@ export interface FormFieldContainerProps {
 
 export const FormFieldContainer: React.FC<FormFieldContainerProps> = ({
   label,
+  subLabel,
   renderInput,
   className = "",
   warningMessage,
@@ -41,12 +43,14 @@ export const FormFieldContainer: React.FC<FormFieldContainerProps> = ({
     <div className={className}>
       <label className="flex font-medium text-[14px] leading-[20px]">
         {label}
+        {subLabel && <span className="text-secondary ml-2"> {subLabel}</span>}
+
         {tooltipMessage && (
           <>
             <img
               src={info}
               data-tooltip-id="info-tooltip"
-              className="cursor-help"
+              className="ml-[9px]"
             />
             <Tooltip id="info-tooltip" content={tooltipMessage} place="top" />
           </>

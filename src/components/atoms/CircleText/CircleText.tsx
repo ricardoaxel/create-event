@@ -8,13 +8,16 @@ export interface CircleTextProps {
   content?: string | React.ReactNode;
   bgColor?: string;
   textColor?: string;
-  type?: "success" | "warning" | "default" | "inactive";
+  type?: "success" | "successActive" | "warning" | "default" | "inactive";
   size?: string;
 }
 
 const imageMap: Record<string, React.ReactNode> = {
   success: <SuccessIcon />,
   warning: <img src={warning} alt="Warning" />,
+  default: null,
+  successActive: null,
+  inactive: null,
 };
 
 export const CircleText: React.FC<CircleTextProps> = ({
@@ -24,17 +27,21 @@ export const CircleText: React.FC<CircleTextProps> = ({
   type = "default",
   size = "1.5rem",
 }) => {
+  const isActiveType = type === "success" || type === "successActive";
+  const isWarningType = type === "warning";
+  const isInactiveType = type === "inactive";
+
   const circleColor = clsx({
-    "bg-success": type === "success",
-    "bg-warning": type === "warning",
-    "bg-disabled": type === "inactive",
-    [bgColor]: type !== "success" && type !== "warning" && type !== "inactive",
+    "bg-success": isActiveType,
+    "bg-warning": isWarningType,
+    "bg-disabled": isInactiveType,
+    [bgColor]: !isActiveType && !isWarningType && !isInactiveType,
   });
 
   const textColorClass = clsx({
-    "text-secondary": type === "inactive",
-    [textColor]:
-      type !== "success" && type !== "warning" && type !== "inactive",
+    "text-black": isInactiveType || type === "successActive",
+    "text-secondary": isInactiveType,
+    [textColor]: !isActiveType && !isWarningType && !isInactiveType,
   });
 
   const image = imageMap[type];
@@ -51,7 +58,7 @@ export const CircleText: React.FC<CircleTextProps> = ({
         height: size,
       }}
     >
-      {image ? image : content}
+      {image || content}
     </div>
   );
 };

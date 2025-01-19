@@ -18,6 +18,19 @@ export const Step: React.FC<StepProps> = ({
   hasIssue = false,
   onClick,
 }) => {
+  const circleTextType:
+    | "success"
+    | "inactive"
+    | "default"
+    | "successActive"
+    | "warning" = isSelected
+    ? type === "success"
+      ? "successActive"
+      : "default"
+    : type === "success"
+    ? "success"
+    : "inactive";
+
   const containerClasses = clsx(
     "flex rounded-[8px] gap-3 px-2 h-[48px] items-center border cursor-pointer",
     {
@@ -27,8 +40,6 @@ export const Step: React.FC<StepProps> = ({
       "border-transparent text-primary/70": !isSelected,
     }
   );
-
-  const circleTextType = isSelected ? "default" : type;
 
   return (
     <div className={containerClasses} onClick={onClick}>

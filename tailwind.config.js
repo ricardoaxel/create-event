@@ -9,6 +9,7 @@ export default {
         warning: "rgba(var(--text-warning))",
         accent: "rgba(var(--accent))",
         success: "rgba(var(--success))",
+        black: "rgba(var(--bg-header))",
       },
       backgroundColor: {
         primary: "rgba(var(--bg-primary))",
