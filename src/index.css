@@ -50,6 +50,7 @@ body {
     --text-primary: 255, 255, 255;
     --text-secondary: 163, 163, 163;
     --text-warning: 255, 106, 85;
+    --border-dashed: 68, 68, 70;
   }
 }
 

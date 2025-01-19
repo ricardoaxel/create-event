@@ -11,6 +11,7 @@ import {
 } from "@components/molecules";
 import { FormTemplate } from "@components/templates";
 import { SelectorOption } from "@components/molecules/Selector/Selector";
+import { toast } from "@utils";
 import { FormValues } from "src/pages/CreateEventPage/CreateEventPage";
 import basicInfoData from "../../../data/basicInfoData.json";
 
@@ -62,6 +63,8 @@ export const BasicInformationForm: React.FC<BasicInformationFormProps> = ({
     formProps.setFieldValue("isEventEnabled", value);
   };
 
+  const onImageError = (errorMsg: string) => toast(errorMsg);
+
   const imagePickerBannerText = hasOverlayTitle ? overlayTitle : "";
 
   return (
@@ -109,6 +112,8 @@ export const BasicInformationForm: React.FC<BasicInformationFormProps> = ({
             onImageUpload={handleBannerChange}
             overlayTitle={imagePickerBannerText}
             defaultImage={banner}
+            onImageError={onImageError}
+            // hasWarning
             {...inputProps}
           />
         )}

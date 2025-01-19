@@ -31,7 +31,7 @@ export const Button: React.FC<ButtonProps> = ({
     <button
       onClick={onClick}
       type={type}
-      className={`cursor-pointer text-sm  min-w-[120px] rounded-[8px] flex justify-center items-center transition-all duration-500 ${borderClass} ${typeClasses} ${buttonClass} ${className}`}
+      className={`cursor-pointer text-sm min-h-[40px] min-w-[120px] rounded-[8px] flex justify-center items-center transition-all duration-500 ${borderClass} ${typeClasses} ${buttonClass} ${className}`}
       {...props}
     >
       {label}

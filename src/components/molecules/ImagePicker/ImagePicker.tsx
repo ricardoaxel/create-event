@@ -1,17 +1,24 @@
 import React, { useState } from "react";
-
 import { archiveUpload } from "@assets";
+
+import "./ImagePicker.css";
 
 interface ImagePickerProps {
   onImageUpload?: (image: string) => void;
   defaultImage?: string | null;
   overlayTitle?: string;
+  hasWarning?: boolean;
+  onImageError: (message: string) => void;
 }
+
+const commonImageFormatError = "Image must be a png/jpg file";
 
 export const ImagePicker: React.FC<ImagePickerProps> = ({
   onImageUpload,
   defaultImage,
   overlayTitle,
+  hasWarning = false,
+  onImageError,
 }) => {
   const [backgroundImage, setBackgroundImage] = useState<string | null>(
     defaultImage || null
@@ -31,6 +38,8 @@ export const ImagePicker: React.FC<ImagePickerProps> = ({
       const reader = new FileReader();
       reader.onloadend = () => handleImageUpload(reader.result as string);
       reader.readAsDataURL(file);
+    } else {
+      onImageError(commonImageFormatError);
     }
   };
 
@@ -42,6 +51,8 @@ export const ImagePicker: React.FC<ImagePickerProps> = ({
       const reader = new FileReader();
       reader.onloadend = () => handleImageUpload(reader.result as string);
       reader.readAsDataURL(file);
+    } else {
+      onImageError(commonImageFormatError);
     }
   };
 
@@ -58,9 +69,16 @@ export const ImagePicker: React.FC<ImagePickerProps> = ({
     input.click();
   };
 
-  const containerClasses = `relative w-full h-[244px] rounded-2xl border-primary/10 border-dashed flex flex-col gap-[12px] justify-center items-center cursor-pointer transition-all duration-300 ease-in-out
-    ${isDragging || isHovered ? "bg-accent/10" : "bg-selection"} 
-    ${backgroundImage ? "bg-cover bg-center border-transparent" : "border"}`;
+  const actualBG = hasWarning
+    ? "bg-warning/10"
+    : isDragging || isHovered
+    ? "bg-accent/10"
+    : "bg-selection";
+
+  const containerClasses = `relative w-full h-[244px] rounded-2xl border-selected dashed-border flex flex-col gap-[12px] justify-center items-center cursor-pointer transition-all duration-300 ease-in-out
+    ${actualBG} 
+    ${backgroundImage ? "bg-cover bg-center border-transparent" : "border"}
+    ${hasWarning ? "dashed-border-warning" : ""}`;
 
   return (
     <div

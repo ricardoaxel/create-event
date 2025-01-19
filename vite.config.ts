@@ -6,8 +6,8 @@ export default defineConfig({
   resolve: {
     alias: {
       "@components": "/src/components",
-      "@hooks": "src/hooks/index.tsx",
       "@assets": "/src/assets/index.tsx",
+      "@utils": "/src/utils/index.tsx",
     },
   },
 });
