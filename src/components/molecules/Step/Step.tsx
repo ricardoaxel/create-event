@@ -19,12 +19,12 @@ export const Step: React.FC<StepProps> = ({
   onClick,
 }) => {
   const containerClasses = clsx(
-    "flex rounded-[8px] gap-3 px-2 py-3 items-center border cursor-pointer",
+    "flex rounded-[8px] gap-3 px-2 h-[48px] items-center border cursor-pointer",
     {
       "justify-between": hasIssue,
       "justify-start": !hasIssue,
       "border-selected bg-primary": isSelected,
-      "border-transparent": !isSelected,
+      "border-transparent text-primary/70": !isSelected,
     }
   );
 

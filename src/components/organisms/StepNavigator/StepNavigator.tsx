@@ -19,8 +19,10 @@ export const StepNavigator: React.FC<StepNavigatorProps> = ({
   onStepChange,
 }) => {
   return (
-    <nav className="w-[15.5rem] h-full flex flex-col p-5 bg-tertiary ml-[12.5%]">
-      <h1 className="font-bold text-[24px] mb-5">Create Event</h1>
+    <nav className="w-[248px] h-full flex flex-col p-5 bg-tertiary ml-[12.5%]">
+      <h1 className="font-bold text-[24px] leading-[32px] mb-5">
+        Create Event
+      </h1>
       {steps.map((step, index) => (
         <Step
           key={index}

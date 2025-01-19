@@ -53,13 +53,13 @@ export const ImagePicker: React.FC<ImagePickerProps> = ({
   const handleClick = () => {
     const input = document.createElement("input");
     input.type = "file";
-    input.accept = "image/*";
+    input.accept = "image/jpeg, image/png";
     input.onchange = handleFileChange;
     input.click();
   };
 
   const containerClasses = `relative w-full h-[244px] rounded-2xl border-primary/10 border-dashed flex flex-col gap-[12px] justify-center items-center cursor-pointer transition-all duration-300 ease-in-out
-    ${isDragging || isHovered ? "bg-accent" : "bg-selection"} 
+    ${isDragging || isHovered ? "bg-accent/10" : "bg-selection"} 
     ${backgroundImage ? "bg-cover bg-center border-transparent" : "border"}`;
 
   return (
@@ -81,7 +81,7 @@ export const ImagePicker: React.FC<ImagePickerProps> = ({
         <span
           className="text-white text-center px-4 bg-header/15 
           flex-1 w-full flex items-center justify-center rounded-2xl
-          font-bold text-4xl"
+          font-bold text-[48px] leading-[56px]"
         >
           {overlayTitle}
         </span>

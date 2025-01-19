@@ -11,7 +11,7 @@ export const FormTemplate: React.FC<FormTemplateProps> = ({
 }) => {
   return (
     <div
-      className={`mt-5 p-5 border-selected rounded-[8px] border flex-1 flex flex-col gap-5 ${className}`}
+      className={`mt-5 p-5 border-selected rounded-[12px] border flex flex-col gap-5 ${className}`}
     >
       {children}
     </div>

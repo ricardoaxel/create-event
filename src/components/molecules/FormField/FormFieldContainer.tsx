@@ -38,9 +38,9 @@ export const FormFieldContainer: React.FC<FormFieldContainerProps> = ({
   };
 
   return (
-    <div className={`form-field-container ${className} `}>
-      <label className="flex text-sm font-medium gap-2">
-        {label}{" "}
+    <div className={className}>
+      <label className="flex font-medium text-[14px] leading-[20px]">
+        {label}
         {tooltipMessage && (
           <>
             <img

@@ -82,7 +82,7 @@ export const PageTemplate = <T extends {}>({
             isOverflowing ? "pr-[7px]" : ""
           } p-5 overflow-auto flex-1 flex flex-col`}
         >
-          <h2 className="font-semibold text-2xl">{title}</h2>
+          <h2 className="font-[600] text-[20px] leading-[32px]">{title}</h2>
           <Component formProps={formProps} />
           <div className="mt-6 flex justify-end gap-6">
             <NavigationButton onClick={previousStep} disabled={isFirstStep} />
@@ -94,7 +94,7 @@ export const PageTemplate = <T extends {}>({
           </div>
           <Button
             label="Save"
-            className="self-end mt-10 w-[120px] max-h-[148px] h-[48px]"
+            className="self-end mt-12 w-[120px] max-h-[148px] h-[48px]"
             type="submit"
           />
         </div>

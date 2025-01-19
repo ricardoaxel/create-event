@@ -15,7 +15,7 @@ export const LabeledCheckbox: React.FC<LabeledCheckboxProps> = ({
 }) => {
   return (
     <label className={`flex items-center gap-2 ${className}`}>
-      <Checkbox checked={checked} onChange={onChange} />
+      <Checkbox checked={checked} onChange={onChange} className="mx-[3px]" />
       <span className="font-medium text-sm">{label}</span>
     </label>
   );

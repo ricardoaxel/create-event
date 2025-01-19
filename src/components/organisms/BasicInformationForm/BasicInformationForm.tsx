@@ -32,8 +32,11 @@ export const BasicInformationForm: React.FC<BasicInformationFormProps> = ({
     overlayTitle,
   } = formProps.values;
 
-  const { eventName: eventNameError, overlayTitle: overlayTitleError } =
-    formProps.errors;
+  const {
+    eventName: eventNameError,
+    overlayTitle: overlayTitleError,
+    banner: bannerError,
+  } = formProps.errors;
 
   const handleEventTypeChange = (selected: SelectorOption) => {
     formProps.setFieldValue("eventType", selected);
@@ -59,6 +62,8 @@ export const BasicInformationForm: React.FC<BasicInformationFormProps> = ({
     formProps.setFieldValue("isEventEnabled", value);
   };
 
+  const imagePickerBannerText = hasOverlayTitle ? overlayTitle : "";
+
   return (
     <FormTemplate>
       <ToggleButton
@@ -68,7 +73,7 @@ export const BasicInformationForm: React.FC<BasicInformationFormProps> = ({
         leftSideActive={isEventEnabled}
         className={"self-center"}
       />
-      <div className="flex flex-1 gap-5">
+      <div className="flex gap-5">
         <FormFieldContainer
           label="Event Type"
           className="flex-1"
@@ -96,28 +101,36 @@ export const BasicInformationForm: React.FC<BasicInformationFormProps> = ({
           )}
         />
       </div>
-      <ImagePicker
-        onImageUpload={handleBannerChange}
-        overlayTitle="Upload Event Banner"
-        defaultImage={banner}
+      <FormFieldContainer
+        label="Banner"
+        warningMessage={bannerError}
+        renderInput={(inputProps) => (
+          <ImagePicker
+            onImageUpload={handleBannerChange}
+            overlayTitle={imagePickerBannerText}
+            defaultImage={banner}
+            {...inputProps}
+          />
+        )}
       />
       <LabeledCheckbox
         checked={hasOverlayTitle}
         onChange={handleHasOverlayTitleChange}
         label="Overlay Title on Banner"
       />
-      <FormFieldContainer
-        label="Event Name"
-        className="flex-1"
-        warningMessage={overlayTitleError}
-        renderInput={(inputProps) => (
-          <InputText
-            value={overlayTitle}
-            onChange={handleOverlayTitleChange}
-            {...inputProps}
-          />
-        )}
-      />
+      {hasOverlayTitle && (
+        <FormFieldContainer
+          label="Overlay Title"
+          warningMessage={overlayTitleError}
+          renderInput={(inputProps) => (
+            <InputText
+              value={overlayTitle}
+              onChange={handleOverlayTitleChange}
+              {...inputProps}
+            />
+          )}
+        />
+      )}
     </FormTemplate>
   );
 };

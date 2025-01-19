@@ -14,7 +14,7 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <header className="bg-header py-5 center justify-center flex">
       {imageUrl ? (
-        <img src={crewFareLogo} alt={altText} className="w-[165px] h-[40px]" />
+        <img src={crewFareLogo} alt={altText} />
       ) : (
         <span>{altText}</span>
       )}

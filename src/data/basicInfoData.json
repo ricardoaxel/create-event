@@ -1,9 +1,7 @@
 {
   "eventTypes": [
-    { "id": 1, "name": "Tom Cook" },
-    { "id": 2, "name": "Wade Cooper" },
-    { "id": 3, "name": "Tanya Fox" },
-    { "id": 4, "name": "Arlene Mccoy" },
-    { "id": 5, "name": "Devon Webb" }
+    { "id": 1, "name": "Public Event" },
+    { "id": 2, "name": "Private Event" },
+    { "id": 3, "name": "Other Event" }
   ]
 }

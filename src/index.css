@@ -11,6 +11,8 @@ body {
   height: 100%;
   margin: 0;
   scrollbar-width: thin;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
