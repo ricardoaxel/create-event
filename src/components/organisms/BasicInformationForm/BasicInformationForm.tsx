@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
+import { FormikProps } from "formik";
+
 import {
   FormFieldContainer,
   ToggleButton,
@@ -7,18 +9,10 @@ import {
   ImagePicker,
   LabeledCheckbox,
 } from "@components/molecules";
-import { SelectorOption } from "@components/molecules/Selector/Selector";
 import { FormTemplate } from "@components/templates";
-import { FormikProps } from "formik";
+import { SelectorOption } from "@components/molecules/Selector/Selector";
 import { FormValues } from "src/pages/CreateEventPage/CreateEventPage";
-
-const options = [
-  { id: 1, name: "Tom Cook" },
-  { id: 2, name: "Wade Cooper" },
-  { id: 3, name: "Tanya Fox" },
-  { id: 4, name: "Arlene Mccoy" },
-  { id: 5, name: "Devon Webb" },
-];
+import basicInfoData from "../../../data/basicInfoData.json";
 
 interface BasicInformationFormProps {
   formProps: FormikProps<FormValues>;
@@ -27,31 +21,42 @@ interface BasicInformationFormProps {
 export const BasicInformationForm: React.FC<BasicInformationFormProps> = ({
   formProps,
 }) => {
-  const [isEventEnabled, setIsEventEnabled] = useState<boolean>(true);
-  const [selectedOption, setSelectedOption] = useState<SelectorOption>(
-    options[0]
-  );
+  const options = basicInfoData.eventTypes;
 
-  const handleChange = (newOption: SelectorOption) => {
-    setSelectedOption(newOption);
-    console.log("Selected option:", newOption);
+  const {
+    isEventEnabled,
+    eventType,
+    eventName,
+    banner,
+    hasOverlayTitle,
+    overlayTitle,
+  } = formProps.values;
+
+  const { eventName: eventNameError, overlayTitle: overlayTitleError } =
+    formProps.errors;
+
+  const handleEventTypeChange = (selected: SelectorOption) => {
+    formProps.setFieldValue("eventType", selected);
   };
 
-  const [inputValue, setInputValue] = useState("");
-  const [warningMessage, setWarningMessage] = useState(
-    "Error in input happening"
-  );
+  const handleEventNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    formProps.setFieldValue("eventName", e.target.value);
+  };
 
-  const [overlayTitle, setOverlayTitle] = useState(false);
+  const handleOverlayTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    formProps.setFieldValue("overlayTitle", e.target.value);
+  };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
+  const handleHasOverlayTitleChange = (value: boolean) => {
+    formProps.setFieldValue("hasOverlayTitle", value);
+  };
 
-    if (e.target.value.length < 5) {
-      setWarningMessage("Input is too short.");
-    } else {
-      setWarningMessage("");
-    }
+  const handleBannerChange = (image: any) => {
+    formProps.setFieldValue("banner", image);
+  };
+
+  const handleToggleEventEnabled = (value: boolean) => {
+    formProps.setFieldValue("isEventEnabled", value);
   };
 
   return (
@@ -59,19 +64,19 @@ export const BasicInformationForm: React.FC<BasicInformationFormProps> = ({
       <ToggleButton
         leftText="Enable Event"
         rightText="Disable Event"
-        handleToggle={setIsEventEnabled}
+        handleToggle={handleToggleEventEnabled}
         leftSideActive={isEventEnabled}
         className={"self-center"}
       />
       <div className="flex flex-1 gap-5">
         <FormFieldContainer
-          label="Event Name"
+          label="Event Type"
           className="flex-1"
           renderInput={(inputProps) => (
             <Selector
               options={options}
-              value={selectedOption}
-              onChange={handleChange}
+              value={eventType}
+              onChange={handleEventTypeChange}
               {...inputProps}
             />
           )}
@@ -80,35 +85,35 @@ export const BasicInformationForm: React.FC<BasicInformationFormProps> = ({
         <FormFieldContainer
           label="Event Name"
           className="flex-1"
-          warningMessage={formProps.errors.eventName}
+          warningMessage={eventNameError}
           renderInput={(inputProps) => (
             <InputText
-              value={formProps.values.eventName}
-              onChange={(e) =>
-                formProps.setFieldValue("eventName", e.target.value)
-              }
+              value={eventName}
+              onChange={handleEventNameChange}
+              onBlur={formProps.handleBlur("eventName")}
               {...inputProps}
             />
           )}
         />
       </div>
       <ImagePicker
-        onImageUpload={(c) => console.log(c)}
-        overlayTitle="Food & Wine Festival"
+        onImageUpload={handleBannerChange}
+        overlayTitle="Upload Event Banner"
+        defaultImage={banner}
       />
       <LabeledCheckbox
-        checked={overlayTitle}
-        onChange={(overlayTitle) => setOverlayTitle(overlayTitle)}
+        checked={hasOverlayTitle}
+        onChange={handleHasOverlayTitleChange}
         label="Overlay Title on Banner"
       />
-
       <FormFieldContainer
         label="Event Name"
         className="flex-1"
+        warningMessage={overlayTitleError}
         renderInput={(inputProps) => (
           <InputText
-            value={inputValue}
-            onChange={handleInputChange}
+            value={overlayTitle}
+            onChange={handleOverlayTitleChange}
             {...inputProps}
           />
         )}

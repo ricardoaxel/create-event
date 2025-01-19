@@ -32,12 +32,14 @@ export const ToggleButton: React.FC<ToggleButtonProps> = ({
         label={leftText}
         onClick={handleClickLeft}
         className={`bg-transparent ${leftSideActive ? "" : "text-accent"}`}
+        type="button"
       />
 
       <Button
         label={rightText}
         onClick={handleClickRight}
         className={`bg-transparent ${!leftSideActive ? "" : "text-accent"}`}
+        type="button"
       />
     </div>
   );

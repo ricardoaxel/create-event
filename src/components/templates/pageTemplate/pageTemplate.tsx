@@ -72,7 +72,8 @@ export const PageTemplate = <T extends {}>({
         currentStep={currentStep}
         onStepChange={onStepChange}
       />
-      <div
+      <form
+        onSubmit={formProps.handleSubmit}
         className={`${isOverflowing ? "pr-[7px]" : ""} flex-1 flex flex-col`}
       >
         <div
@@ -94,9 +95,10 @@ export const PageTemplate = <T extends {}>({
           <Button
             label="Save"
             className="self-end mt-10 w-[120px] max-h-[148px] h-[48px]"
+            type="submit"
           />
         </div>
-      </div>
+      </form>
     </div>
   );
 };

@@ -3,9 +3,10 @@ export interface ButtonProps {
   onClick?: () => void;
   width?: string;
   height?: string;
-  type?: "primary" | "secondary";
+  buttonType?: "primary" | "secondary";
   noBorder?: boolean;
   className?: string;
+  [key: string]: any;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -13,12 +14,14 @@ export const Button: React.FC<ButtonProps> = ({
   onClick,
   width = "120px",
   height = "48px",
-  type = "primary",
+  buttonType = "primary",
   noBorder = false,
   className,
+  type = "button",
+  ...props
 }) => {
   const typeClasses =
-    type === "primary"
+    buttonType === "primary"
       ? "bg-accent border-transparent"
       : "border-accent text-accent";
 
@@ -28,10 +31,11 @@ export const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
-      type="button"
       onClick={onClick}
       style={{ width, height }}
+      type={type}
       className={`cursor-pointer text-sm min-h-[48px] rounded-[8px] flex justify-center items-center transition-all duration-500 ${borderClass} ${typeClasses} ${buttonClass} ${className}`}
+      {...props}
     >
       {label}
     </button>

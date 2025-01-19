@@ -19,6 +19,7 @@ export const NavigationButton: React.FC<NavigationButtonProps> = ({
     <button
       onClick={onClick}
       disabled={disabled}
+      type="button"
       className={`p-2 size-12 rounded-md flex justify-center items-center bg-selection group
         ${disabled ? "opacity-50 cursor-not-allowed" : "hover:bg-accent"} 
         ${className}`}
