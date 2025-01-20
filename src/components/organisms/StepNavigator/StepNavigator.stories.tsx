@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Meta, StoryFn } from "@storybook/react";
-import { StepNavigator } from "./StepNavigator";
+
 import { StepData } from "@components/templates/PageTemplate/PageTemplate";
+
+import { StepNavigator } from "./StepNavigator";
 
 export default {
   title: "Organisms/StepNavigator",

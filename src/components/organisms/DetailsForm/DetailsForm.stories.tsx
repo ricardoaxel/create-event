@@ -61,7 +61,7 @@ const Template: StoryFn = (args) => {
       onSubmit={handleSubmit}
       validateOnBlur
     >
-      {(formProps) => <DetailsForm {...args} formProps={formik} />}
+      {() => <DetailsForm {...args} formProps={formik} />}
     </Formik>
   );
 };
