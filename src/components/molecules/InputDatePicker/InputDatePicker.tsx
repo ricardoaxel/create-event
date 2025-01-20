@@ -5,7 +5,7 @@ import "@wojtekmaj/react-daterange-picker/dist/DateRangePicker.css";
 import "react-calendar/dist/Calendar.css";
 
 // Custom styling based on css-variables of the theme
-import "./inputdatepicker.css";
+import "./Inputdatepicker.css";
 
 import { calendar } from "@assets";
 
