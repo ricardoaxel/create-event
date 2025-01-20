@@ -152,11 +152,12 @@ const CreateEventPage: React.FC = () => {
     validate: () => {
       setIsSubmitted(true);
     },
-    onSubmit: () => {
+    onSubmit: (values) => {
       toast(
         `Form submitted successfully! (Check the web inspector console to view the submitted data)`,
         "success"
       );
+      console.log(values);
     },
   });
 

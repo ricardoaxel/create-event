@@ -208,7 +208,7 @@ export const DatesForm: React.FC<DatesFormProps> = React.memo(
         <div className="flex gap-3 mt-6 flex-col">
           <h3 className="font-medium text-sm">Taxes & Fees</h3>
           {taxesAndFees.map((tax, index) => (
-            <div className="flex gap-5 ">
+            <div className="flex gap-5 " key={`${tax}${index}`}>
               <FormFieldContainer
                 label="Name"
                 className="flex-1"
