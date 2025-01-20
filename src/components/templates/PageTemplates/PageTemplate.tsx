@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import { FormikProps, FormikContextType } from "formik";
 
 import { StepNavigator } from "@components/organisms";
+
 import { NavigationButton, Button, CircleText } from "@components/atoms";
 
 export interface StepData<T> {

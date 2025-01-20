@@ -1,4 +1,4 @@
-import { FormTemplate } from "./FormTemplate/FormTemplate";
-import { PageTemplate } from "./PageTemplate/PageTemplate";
+import { FormTemplate } from "./FormTemplates/FormTemplate";
+import { PageTemplate } from "./PageTemplates/PageTemplate";
 
 export { PageTemplate, FormTemplate };

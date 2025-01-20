@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Meta, StoryFn } from "@storybook/react";
 
-import { StepData } from "@components/templates/PageTemplate/PageTemplate";
+import { StepData } from "@components/templates/PageTemplates/PageTemplate";
 
 import { StepNavigator } from "./StepNavigator";
 

@@ -1,5 +1,5 @@
 import { Step } from "@components/molecules";
-import { StepData } from "@components/templates/PageTemplate/PageTemplate";
+import { StepData } from "@components/templates/PageTemplates/PageTemplate";
 
 interface StepNavigatorProps<T> {
   steps: StepData<T>[];

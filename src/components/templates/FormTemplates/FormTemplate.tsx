@@ -1,8 +1,8 @@
 import React from "react";
 
 interface FormTemplateProps {
-  children: React.ReactNode;
   className?: string;
+  children: React.ReactNode;
 }
 
 export const FormTemplate: React.FC<FormTemplateProps> = ({
