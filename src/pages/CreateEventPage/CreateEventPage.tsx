@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect, useMemo } from "react";
 import { useFormik, FormikContextType } from "formik";
 import * as Yup from "yup";
+import { toast } from "@utils";
 
 import {
   BasicInformationForm,
@@ -152,7 +153,10 @@ const CreateEventPage: React.FC = () => {
       setIsSubmitted(true);
     },
     onSubmit: (values) => {
-      console.log(`Final values: ${JSON.stringify(values, null, 2)}`);
+      toast(
+        `Form submitted successfully! (Check the web inspector console to view the submitted data)`,
+        "success"
+      );
     },
   });
 

@@ -26,6 +26,7 @@ export default {
         poppins: ["Poppins", "sans-serif"],
       },
       borderColor: {
+        success: "rgba(var(--success))",
         selected: "rgba(var(--selection))",
         warning: "rgba(var(--bg-warning))",
         accent: "rgba(var(--accent))",
