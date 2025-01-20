@@ -116,7 +116,7 @@ export const DatesForm: React.FC<DatesFormProps> = React.memo(
     const handleAddTaxesAndFees = useCallback(() => {
       const updatedTaxesAndFees = [
         ...taxesAndFees,
-        { name: "", amount: 0, type: { id: "fixed", name: "Fixed" } },
+        { name: "", amount: 1, type: { id: "fixed", name: "Fixed" } },
       ];
       formProps.setFieldValue("dates.taxesAndFees", updatedTaxesAndFees);
     }, [formProps, taxesAndFees]);
@@ -208,7 +208,7 @@ export const DatesForm: React.FC<DatesFormProps> = React.memo(
         <div className="flex gap-3 mt-6 flex-col">
           <h3 className="font-medium text-sm">Taxes & Fees</h3>
           {taxesAndFees.map((tax, index) => (
-            <div className="flex gap-5">
+            <div className="flex gap-5 ">
               <FormFieldContainer
                 label="Name"
                 className="flex-1"
@@ -237,6 +237,8 @@ export const DatesForm: React.FC<DatesFormProps> = React.memo(
                 renderInput={(inputProps) => (
                   <InputNumber
                     value={tax.amount}
+                    min={1}
+                    max={10000000}
                     showPercentage={tax.type.id === "percentage"}
                     onChange={(e) =>
                       handleTaxesAndFeesChange(index, "amount", e)
@@ -265,7 +267,11 @@ export const DatesForm: React.FC<DatesFormProps> = React.memo(
               />
               <img
                 src={trash}
-                className="self-end mb-3 cursor-pointer"
+                className={` ${
+                  taxesAndFeesErrors && taxesAndFeesErrors[index]
+                    ? "mb-9"
+                    : "mb-3"
+                } self-end  cursor-pointer`}
                 onClick={() => handleDeleteTaxesAndFees(index)}
               />
             </div>

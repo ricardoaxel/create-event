@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, useMemo } from "react";
 import { useFormik, FormikContextType } from "formik";
 import * as Yup from "yup";
 
@@ -119,7 +119,7 @@ const steps: {
 const CreateEventPage: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [triggerButtonAnimation, setTriggerButtonAnimation] = useState(false);
+  const [isSubmitButtonAnimating, setIsSubmitButtonAnimating] = useState(false);
 
   const formik = useFormik<FormValues>({
     initialValues: {
@@ -143,7 +143,7 @@ const CreateEventPage: React.FC = () => {
         eventDates: [[null, null]],
         defaultCheckInOutDates: [null, null],
         taxesAndFees: [
-          { name: "", amount: 0, type: { id: "fixed", name: "Fixed" } },
+          { name: "", amount: 1, type: { id: "fixed", name: "Fixed" } },
         ],
       },
     },
@@ -162,54 +162,54 @@ const CreateEventPage: React.FC = () => {
     setCurrentStep(step);
   }, []);
 
-  const determineStepState = (
-    stepKey: keyof FormValues
-  ): "completed" | "hasIssues" | null => {
-    if (!isSubmitted) {
-      return null;
-    }
+  const determineStepState = useCallback(
+    (stepKey: keyof FormValues): "completed" | "hasIssues" | null => {
+      if (!isSubmitted) {
+        return null;
+      }
 
-    const stepErrors = formik.errors[stepKey];
-    const stepValues = formik.values[stepKey];
-    const schema = validationSchema.fields[stepKey] as Yup.ObjectSchema<any>;
+      const stepErrors = formik.errors[stepKey];
+      const stepValues = formik.values[stepKey];
+      const schema = validationSchema.fields[stepKey] as Yup.ObjectSchema<any>;
 
-    if (stepErrors && Object.keys(stepErrors).length > 0) {
-      return "hasIssues";
-    }
+      if (stepErrors && Object.keys(stepErrors).length > 0) {
+        return "hasIssues";
+      }
 
-    try {
-      schema.validateSync(stepValues, { abortEarly: false });
-      return "completed";
-    } catch {
-      return "hasIssues";
-    }
-  };
+      try {
+        schema.validateSync(stepValues, { abortEarly: false });
+        return "completed";
+      } catch {
+        return "hasIssues";
+      }
+    },
+    [formik.errors, formik.values, isSubmitted]
+  );
+
+  const stepsWithState = useMemo(
+    () =>
+      steps.map((step) => ({
+        ...step,
+        stepState: determineStepState(step.key),
+      })),
+    [determineStepState]
+  );
 
   useEffect(() => {
-    if (triggerButtonAnimation) {
-      console.log("Triggering button animation...");
+    if (isSubmitButtonAnimating) {
       const timer = setTimeout(() => {
-        setTriggerButtonAnimation(false);
+        setIsSubmitButtonAnimating(false);
       }, 500);
 
       return () => clearTimeout(timer);
     }
-  }, [triggerButtonAnimation]);
+  }, [isSubmitButtonAnimating]);
 
   const validateFormStatus = () => {
     formik.validateForm().then((errors) => {
-      const hasErrors = Object.keys(errors).length > 0;
-
-      if (hasErrors) {
-        setTriggerButtonAnimation(true);
-      }
+      setIsSubmitButtonAnimating(Object.keys(errors).length > 0);
     });
   };
-
-  const stepsWithState = steps.map((step) => ({
-    ...step,
-    stepState: determineStepState(step.key),
-  }));
 
   return (
     <PageTemplate
@@ -217,8 +217,8 @@ const CreateEventPage: React.FC = () => {
       onStepChange={handleStepChange}
       steps={stepsWithState}
       formProps={formik}
-      triggerButtonAnimation={triggerButtonAnimation}
-      validateFormStatus={() => validateFormStatus()}
+      triggerButtonAnimation={isSubmitButtonAnimating}
+      validateFormStatus={validateFormStatus}
     />
   );
 };
