@@ -40,7 +40,7 @@ export interface FormValues {
   };
 }
 
-const validationSchema = Yup.object({
+export const validationSchema = Yup.object({
   basicInformation: Yup.object({
     eventName: Yup.string().required("Event Name is required"),
     banner: Yup.string().required("Banner is required"),
@@ -142,9 +142,7 @@ const CreateEventPage: React.FC = () => {
         bookableRangeDates: [null, null],
         eventDates: [[null, null]],
         defaultCheckInOutDates: [null, null],
-        taxesAndFees: [
-          { name: "", amount: 1, type: { id: "fixed", name: "Fixed" } },
-        ],
+        taxesAndFees: [],
       },
     },
     validationSchema,

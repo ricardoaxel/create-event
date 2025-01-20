@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { ArrowIcon } from "@components/icons";
 
-interface InputNumberProps {
+export interface InputNumberProps {
   value: number;
   onChange: (value: number) => void;
   min?: number;

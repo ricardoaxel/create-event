@@ -55,6 +55,12 @@ Success.args = {
   type: "success",
 };
 
+export const SuccessActive = Template.bind({});
+SuccessActive.args = {
+  type: "successActive",
+  content: "2",
+};
+
 export const Disabled = Template.bind({});
 Disabled.args = {
   content: "0",

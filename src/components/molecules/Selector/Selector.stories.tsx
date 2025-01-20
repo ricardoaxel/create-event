@@ -11,7 +11,14 @@ const Template: StoryFn<SelectorProps> = (args) => {
     setSelected(selected);
   };
 
-  return <Selector {...args} value={selected} onChange={handleChange} />;
+  return (
+    <Selector
+      {...args}
+      value={selected}
+      onChange={handleChange}
+      inputContainerClasses="w-full"
+    />
+  );
 };
 
 export default {

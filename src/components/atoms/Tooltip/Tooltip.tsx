@@ -1,7 +1,7 @@
 import { Tooltip as ReactTooltip, PlacesType } from "react-tooltip";
 import styles from "./Tooltip.module.css";
 
-interface TooltipProps {
+export interface TooltipProps {
   id: string;
   content: string;
   place?: PlacesType;

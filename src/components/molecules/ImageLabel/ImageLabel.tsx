@@ -2,7 +2,7 @@ import React from "react";
 
 import { add } from "@assets";
 
-interface ImageLabelProps {
+export interface ImageLabelProps {
   label: string;
   imageSrc?: string;
   onClick?: () => void;

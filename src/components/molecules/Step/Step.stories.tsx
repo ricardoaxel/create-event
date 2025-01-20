@@ -1,63 +1,63 @@
-import { Meta, StoryFn } from "@storybook/react";
+import { useState } from "react";
 import { Step, StepProps } from "./Step";
+import { StoryFn, Meta } from "@storybook/react";
 
 export default {
   title: "Molecules/Step",
   component: Step,
-  argTypes: {
-    type: {
-      control: {
-        type: "select",
-        options: ["success", "inactive", "default"],
-      },
-    },
-    isSelected: { control: "boolean" },
-    hasIssue: { control: "boolean" },
-  },
-} as Meta<StepProps>;
+} as Meta;
 
-const Template: StoryFn<StepProps> = (args) => <Step {...args} />;
+const Template: StoryFn<StepProps> = (args) => {
+  const [isSelected, setIsSelected] = useState(args.isSelected);
 
-export const Selected = Template.bind({});
-Selected.args = {
-  title: "Step Title",
+  const handleClick = () => {
+    setIsSelected(!isSelected);
+  };
+
+  return <Step {...args} isSelected={isSelected} onClick={handleClick} />;
+};
+
+export const Default = Template.bind({});
+Default.args = {
+  title: "Step 1: Start",
   stepNumber: "1",
+  isSelected: false,
+  type: "inactive",
+  hasIssue: false,
+};
+
+export const SelectedStep = Template.bind({});
+SelectedStep.args = {
+  title: "Step 2: In Progress",
+  stepNumber: "2",
   isSelected: true,
   type: "default",
   hasIssue: false,
 };
 
-export const SelectedWithIssue = Template.bind({});
-SelectedWithIssue.args = {
-  title: "Step Title",
-  stepNumber: "1",
-  isSelected: true,
-  type: "default",
-  hasIssue: true,
-};
-
-export const Inactive = Template.bind({});
-Inactive.args = {
-  title: "Step Title",
-  stepNumber: "1",
+export const SuccessStep = Template.bind({});
+SuccessStep.args = {
+  title: "Step 3: Completed",
+  stepNumber: "3",
   isSelected: false,
-  type: "inactive",
+  type: "success",
+  hasIssue: false,
 };
 
-export const InactiveWithIssue = Template.bind({});
-InactiveWithIssue.args = {
-  title: "Step Title",
-  stepNumber: "1",
+export const StepWithIssue = Template.bind({});
+StepWithIssue.args = {
+  title: "Step 4: Error",
+  stepNumber: "4",
   isSelected: false,
   type: "inactive",
   hasIssue: true,
 };
 
-export const Success = Template.bind({});
-Success.args = {
-  title: "Success Step Title",
+export const SuccessActiveStep = Template.bind({});
+SuccessActiveStep.args = {
+  title: "Step 5: Active Success",
   stepNumber: "5",
-  isSelected: false,
+  isSelected: true,
   type: "success",
   hasIssue: false,
 };

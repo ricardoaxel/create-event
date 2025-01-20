@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Meta, StoryFn } from "@storybook/react";
 
-import { InputText } from "../InputText/InputText";
+import { InputText } from "../InputText/InputText"; // Import your InputText component
 import {
   FormFieldContainerProps,
   FormFieldContainer,
@@ -13,6 +13,8 @@ export default {
   argTypes: {
     label: { control: "text" },
     className: { control: "text" },
+    tooltipMessage: { control: "text" },
+    warningMessage: { control: "text" },
   },
 } as Meta;
 
@@ -24,13 +26,18 @@ const Template: StoryFn<FormFieldContainerProps> = (args) => {
   };
 
   return (
-    <FormFieldContainer {...args}>
-      <InputText
-        value={value}
-        onChange={handleChange}
-        placeholder="Type here"
-      />
-    </FormFieldContainer>
+    <FormFieldContainer
+      {...args}
+      renderInput={(inputProps) => (
+        <InputText
+          {...inputProps}
+          value={value}
+          onChange={handleChange}
+          placeholder="Type here"
+          inputContainerClasses={"text-secondary"}
+        />
+      )}
+    />
   );
 };
 
@@ -44,4 +51,16 @@ export const WithCustomClass = Template.bind({});
 WithCustomClass.args = {
   label: "Email",
   className: "bg-gray-400 p-4",
+};
+
+export const WithTooltip = Template.bind({});
+WithTooltip.args = {
+  label: "Username",
+  tooltipMessage: "This is a username input field",
+};
+
+export const WithWarningMessage = Template.bind({});
+WithWarningMessage.args = {
+  label: "Password",
+  warningMessage: "Password is too weak",
 };

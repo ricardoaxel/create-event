@@ -11,7 +11,7 @@ const meta: Meta<ButtonProps> = {
   },
   tags: ["autodocs"],
   argTypes: {
-    type: {
+    buttonType: {
       control: { type: "radio" },
       options: ["primary", "secondary"],
       description: "Specifies the type of the button",
@@ -36,6 +36,14 @@ const meta: Meta<ButtonProps> = {
       control: { type: "boolean" },
       description: "If true, removes the button's border",
     },
+    animate: {
+      control: { type: "boolean" },
+      description: "If true, triggers an animation effect on the button",
+    },
+    className: {
+      control: { type: "text" },
+      description: "Custom class for additional styling",
+    },
   },
   args: {
     onClick: fn(),
@@ -48,7 +56,7 @@ type Story = StoryObj<ButtonProps>;
 
 export const Primary: Story = {
   args: {
-    type: "primary",
+    buttonType: "primary",
     label: "Primary Button",
     width: "120px",
     height: "48px",
@@ -57,7 +65,7 @@ export const Primary: Story = {
 
 export const Secondary: Story = {
   args: {
-    type: "secondary",
+    buttonType: "secondary",
     label: "Secondary Button",
     width: "120px",
     height: "48px",
@@ -66,7 +74,7 @@ export const Secondary: Story = {
 
 export const CustomSize: Story = {
   args: {
-    type: "primary",
+    buttonType: "primary",
     label: "Custom Size Button",
     width: "200px",
     height: "60px",
@@ -75,7 +83,7 @@ export const CustomSize: Story = {
 
 export const NoBorder: Story = {
   args: {
-    type: "secondary",
+    buttonType: "secondary",
     label: "No Border Button",
     width: "120px",
     height: "48px",
@@ -85,10 +93,20 @@ export const NoBorder: Story = {
 
 export const CustomClass: Story = {
   args: {
-    type: "primary",
+    buttonType: "primary",
     label: "Custom Class",
     width: "120px",
     height: "48px",
     className: "bg-red-300",
+  },
+};
+
+export const Animated: Story = {
+  args: {
+    buttonType: "primary",
+    label: "Animated Button",
+    width: "120px",
+    height: "48px",
+    animate: true,
   },
 };

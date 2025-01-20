@@ -1,27 +1,30 @@
-import { useState } from "react";
-
-import { Meta, StoryFn } from "@storybook/react";
-
+import React, { useState } from "react";
 import { InputText, InputTextProps } from "./InputText";
+import { StoryFn, Meta } from "@storybook/react";
 
 export default {
   title: "Molecules/InputText",
   component: InputText,
-  argTypes: {
-    warningMessage: { control: "text" },
-    value: { control: "text" },
-    placeholder: { control: "text" },
-  },
 } as Meta;
 
 const Template: StoryFn<InputTextProps> = (args) => {
   const [value, setValue] = useState(args.value);
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    console.log("Input blurred", e.target.value);
+  };
+
   return (
     <InputText
       {...args}
       value={value}
-      onChange={(e) => setValue(e.target.value)}
+      onChange={handleChange}
+      onBlur={handleBlur}
+      inputContainerClasses="text-secondary"
     />
   );
 };
@@ -30,25 +33,19 @@ export const Default = Template.bind({});
 Default.args = {
   value: "",
   placeholder: "Type here",
-};
-
-export const WithWarning = Template.bind({});
-WithWarning.args = {
-  warningMessage: "This is a warning message",
-  value: "",
-  placeholder: "Type here",
+  inputContainerClasses: "input-class",
 };
 
 export const WithCustomPlaceholder = Template.bind({});
 WithCustomPlaceholder.args = {
-  warningMessage: "",
   value: "",
   placeholder: "Enter your name",
+  inputContainerClasses: "input-class",
 };
 
-export const WithValue = Template.bind({});
-WithValue.args = {
-  warningMessage: "",
-  value: "Hello World",
+export const PreFilledInput = Template.bind({});
+PreFilledInput.args = {
+  value: "Hello!",
   placeholder: "Type here",
+  inputContainerClasses: "input-class",
 };
