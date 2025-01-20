@@ -43,14 +43,31 @@ export const BasicInformationForm: React.FC<BasicInformationFormProps> = ({
     } = {},
   } = formProps.errors;
 
-  const handleFieldChange = useCallback(
-    (field: string, value: any) => {
-      formProps.setFieldValue(field, value);
-    },
-    [formProps]
-  );
-
   const onImageError = (errorMsg: string) => toast(errorMsg);
+
+  const handleToggleChange = (value: boolean) => {
+    formProps.setFieldValue("basicInformation.isEventEnabled", value);
+  };
+
+  const handleEventTypeChange = (selected: SelectorOption) => {
+    formProps.setFieldValue("basicInformation.eventType", selected);
+  };
+
+  const handleEventNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    formProps.setFieldValue("basicInformation.eventName", e.target.value);
+  };
+
+  const handleBannerImageUpload = (image: string) => {
+    formProps.setFieldValue("basicInformation.banner", image);
+  };
+
+  const handleHasOverlayTitleChange = (value: boolean) => {
+    formProps.setFieldValue("basicInformation.hasOverlayTitle", value);
+  };
+
+  const handleOverlayTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    formProps.setFieldValue("basicInformation.overlayTitle", e.target.value);
+  };
 
   const imagePickerBannerText = hasOverlayTitle ? overlayTitle : "";
 
@@ -59,9 +76,7 @@ export const BasicInformationForm: React.FC<BasicInformationFormProps> = ({
       <ToggleButton
         leftText="Enable Event"
         rightText="Disable Event"
-        handleToggle={(value: boolean) =>
-          handleFieldChange("basicInformation.isEventEnabled", value)
-        }
+        handleToggle={handleToggleChange}
         leftSideActive={isEventEnabled}
         className="self-center"
       />
@@ -73,9 +88,7 @@ export const BasicInformationForm: React.FC<BasicInformationFormProps> = ({
             <Selector
               options={options}
               value={eventType}
-              onChange={(selected: SelectorOption) =>
-                handleFieldChange("basicInformation.eventType", selected)
-              }
+              onChange={handleEventTypeChange}
               {...inputProps}
             />
           )}
@@ -88,10 +101,7 @@ export const BasicInformationForm: React.FC<BasicInformationFormProps> = ({
           renderInput={(inputProps) => (
             <InputText
               value={eventName}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                handleFieldChange("basicInformation.eventName", e.target.value)
-              }
-              onBlur={formProps.handleBlur("basicInformation.eventName")}
+              onChange={handleEventNameChange}
               {...inputProps}
             />
           )}
@@ -102,9 +112,7 @@ export const BasicInformationForm: React.FC<BasicInformationFormProps> = ({
         warningMessage={bannerError}
         renderInput={(inputProps) => (
           <ImagePicker
-            onImageUpload={(image: string) =>
-              handleFieldChange("basicInformation.banner", image)
-            }
+            onImageUpload={handleBannerImageUpload}
             overlayTitle={imagePickerBannerText}
             defaultImage={banner}
             onImageError={onImageError}
@@ -115,9 +123,7 @@ export const BasicInformationForm: React.FC<BasicInformationFormProps> = ({
       />
       <LabeledCheckbox
         checked={hasOverlayTitle}
-        onChange={(value: boolean) =>
-          handleFieldChange("basicInformation.hasOverlayTitle", value)
-        }
+        onChange={handleHasOverlayTitleChange}
         label="Overlay Title on Banner"
       />
       {hasOverlayTitle && (
@@ -127,12 +133,7 @@ export const BasicInformationForm: React.FC<BasicInformationFormProps> = ({
           renderInput={(inputProps) => (
             <InputText
               value={overlayTitle}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                handleFieldChange(
-                  "basicInformation.overlayTitle",
-                  e.target.value
-                )
-              }
+              onChange={handleOverlayTitleChange}
               {...inputProps}
             />
           )}

@@ -29,10 +29,23 @@ export const DetailsForm: React.FC<DetailsFormProps> = ({ formProps }) => {
     minimumNights: minimumNightsError,
   } = formProps.errors.details || {};
 
-  const handleFieldChange =
-    (field: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
-      formProps.setFieldValue(`details.${field}`, e.target.value);
-    };
+  const handleSubdomainChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    formProps.setFieldValue("details.subdomain", e.target.value);
+  };
+
+  const handleEventAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    formProps.setFieldValue("details.eventAddress", e.target.value);
+  };
+
+  const handleVenueNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    formProps.setFieldValue("details.venueName", e.target.value);
+  };
+
+  const handleFeaturedHotelsTitleChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    formProps.setFieldValue("details.featuredHotelsTitle", e.target.value);
+  };
 
   const handleMinimumNightsChange = (value: number) => {
     formProps.setFieldValue("details.minimumNights", value);
@@ -48,7 +61,7 @@ export const DetailsForm: React.FC<DetailsFormProps> = ({ formProps }) => {
         renderInput={(inputProps) => (
           <InputText
             value={subdomain}
-            onChange={handleFieldChange("subdomain")}
+            onChange={handleSubdomainChange}
             {...inputProps}
           />
         )}
@@ -61,7 +74,7 @@ export const DetailsForm: React.FC<DetailsFormProps> = ({ formProps }) => {
           renderInput={(inputProps) => (
             <InputText
               value={eventAddress}
-              onChange={handleFieldChange("eventAddress")}
+              onChange={handleEventAddressChange}
               {...inputProps}
             />
           )}
@@ -73,7 +86,7 @@ export const DetailsForm: React.FC<DetailsFormProps> = ({ formProps }) => {
           renderInput={(inputProps) => (
             <InputText
               value={venueName}
-              onChange={handleFieldChange("venueName")}
+              onChange={handleVenueNameChange}
               {...inputProps}
             />
           )}
@@ -85,7 +98,7 @@ export const DetailsForm: React.FC<DetailsFormProps> = ({ formProps }) => {
           renderInput={(inputProps) => (
             <InputText
               value={featuredHotelsTitle}
-              onChange={handleFieldChange("featuredHotelsTitle")}
+              onChange={handleFeaturedHotelsTitleChange}
               {...inputProps}
             />
           )}

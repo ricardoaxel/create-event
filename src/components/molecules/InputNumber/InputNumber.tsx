@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { ArrowIcon } from "@components/icons";
 
@@ -8,6 +8,7 @@ interface InputNumberProps {
   min?: number;
   max?: number;
   inputContainerClasses?: string;
+  showPercentage?: boolean;
 }
 
 export const InputNumber: React.FC<InputNumberProps> = ({
@@ -16,8 +17,10 @@ export const InputNumber: React.FC<InputNumberProps> = ({
   min = 0,
   max = 100,
   inputContainerClasses,
+  showPercentage = false,
 }) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
+  const [isFocused, setIsFocused] = useState(false);
 
   useEffect(() => {
     if (value < min) {
@@ -40,22 +43,32 @@ export const InputNumber: React.FC<InputNumberProps> = ({
   };
 
   const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = parseInt(e.target.value, 10);
+    let inputValue = e.target.value;
 
-    if (!isNaN(inputValue)) {
-      onChange(inputValue);
+    if (showPercentage) {
+      inputValue = inputValue.replace("%", "");
+    }
+
+    const numericValue = parseInt(inputValue, 10);
+
+    if (!isNaN(numericValue)) {
+      onChange(numericValue);
     }
   };
+
+  const displayValue = isFocused ? value : showPercentage ? `${value}%` : value;
 
   return (
     <div className="relative flex items-center">
       <input
         ref={inputRef}
-        type="number"
+        type={isFocused ? "number" : "text"}
         id="quantity"
         name="quantity"
-        value={value}
+        value={displayValue}
         onChange={handleValueChange}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
         min={min}
         max={max}
         className={inputContainerClasses}

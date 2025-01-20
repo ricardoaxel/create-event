@@ -43,7 +43,7 @@ export const FormFieldContainer: React.FC<FormFieldContainerProps> = ({
     <div className={className}>
       <label className="flex font-medium text-[14px] leading-[20px]">
         {label}
-        {subLabel && <span className="text-secondary ml-2"> {subLabel}</span>}
+        {subLabel && <span className="text-secondary ml-1"> {subLabel}</span>}
 
         {tooltipMessage && (
           <>

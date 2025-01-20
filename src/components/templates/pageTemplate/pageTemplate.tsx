@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import { FormikProps, FormikContextType } from "formik";
 
 import { StepNavigator } from "@components/organisms";
-import { NavigationButton, Button } from "@components/atoms";
+import { NavigationButton, Button, CircleText } from "@components/atoms";
 
 export interface StepData<T> {
   title: string;
@@ -16,6 +16,8 @@ interface PageTemplateProps<T> {
   onStepChange: (step: number) => void;
   steps: StepData<T>[];
   formProps: FormikProps<T>;
+  triggerButtonAnimation?: boolean;
+  validateFormStatus: () => void;
 }
 
 export const PageTemplate = <T extends {}>({
@@ -23,6 +25,8 @@ export const PageTemplate = <T extends {}>({
   onStepChange,
   steps,
   formProps,
+  triggerButtonAnimation,
+  validateFormStatus,
 }: PageTemplateProps<T>) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isOverflowing, setIsOverflowing] = useState(false);
@@ -67,7 +71,7 @@ export const PageTemplate = <T extends {}>({
     [currentStep, onStepChange]
   );
 
-  const { title, component: Component } = steps[currentStep];
+  const { title, component: Component, stepState } = steps[currentStep];
 
   return (
     <div className="flex-1 flex overflow-hidden">
@@ -84,9 +88,14 @@ export const PageTemplate = <T extends {}>({
           ref={containerRef}
           className={`${
             isOverflowing ? "pr-[7px]" : ""
-          } p-5 overflow-auto flex-1 flex flex-col`}
+          } p-5 overflow-y-auto  overflow-x-hidden flex-1 flex flex-col`}
         >
-          <h2 className="font-[600] text-[20px] leading-[32px]">{title}</h2>
+          <h2 className="font-[600] text-[20px] leading-[32px] flex items-center gap-[14px]">
+            {title}
+            {stepState === "hasIssues" && (
+              <CircleText size="20px" type="warning" />
+            )}
+          </h2>
           <Component formProps={formProps} />
           <div className="mt-6 flex justify-end gap-6">
             <NavigationButton onClick={previousStep} disabled={isFirstStep} />
@@ -98,8 +107,10 @@ export const PageTemplate = <T extends {}>({
           </div>
           <Button
             label="Save"
-            className="self-end mt-12 w-[120px] max-h-[148px] h-[48px]"
+            className="self-end mt-12 w-[120px] max-h-[148px] h-[48px] min-h-[48px]"
             type="submit"
+            animate={triggerButtonAnimation}
+            onClick={validateFormStatus}
           />
         </div>
       </form>

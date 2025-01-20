@@ -70,15 +70,15 @@
   background-color: rgba(var(--success), 0.8) !important;
 }
 
-/* .react-daterange-picker__calendar {
-  width: 350px;
-  max-width: 100vw;
-  z-index: 1;
-  position: absolute;
-} */
-
 .react-daterange-picker__calendar {
   position: relative !important;
   bottom: 1rem;
   padding: 0rem;
+  z-index: 100;
+}
+
+.react-daterange-picker--disabled {
+  background-color: rgba(var(--selection), 1) !important;
+  opacity: 0.5;
+  cursor: not-allowed;
 }

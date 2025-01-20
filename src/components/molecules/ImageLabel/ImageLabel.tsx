@@ -17,7 +17,7 @@ export const ImageLabel: React.FC<ImageLabelProps> = ({
 }) => {
   return (
     <label
-      className={`flex items-center gap-2 cursor-pointer hover:text-primary 0 hover:shadow-md transition-colors duration-300 ${className}`}
+      className={`flex items-center gap-3 cursor-pointer hover:text-primary hover:shadow-md transition-colors duration-300 ${className}`}
       onClick={onClick}
     >
       <img

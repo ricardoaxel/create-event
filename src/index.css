@@ -2,6 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Button animation classes */
+@layer utilities {
+  @keyframes left-right {
+    0% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(-16px);
+    }
+    50% {
+      transform: translateX(16px);
+    }
+    75% {
+      transform: translateX(-16px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  .animate-left-right {
+    animation: left-right 0.2s ease-in-out;
+  }
+}
+
 :root {
   font-family: "Poppins", sans-serif;
 }
